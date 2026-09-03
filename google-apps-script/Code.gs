@@ -1,31 +1,39 @@
 /**
- * Google Apps Script Web App for Wedding RSVP
+ * Hardened Google Apps Script Web App for Wedding RSVP
+ * 
+ * Security features:
+ * - Anti-Formula Injection: Neutralizes =, +, -, @, and control characters to protect Google Sheets.
+ * - Anti-Bot Honeypot: Silently drops automated spam submissions.
+ * - Server-side validation: Enforces presence and length boundaries on all inputs.
+ * - Information disclosure prevention: Suppresses internal error traces and sheet IDs.
+ * - Concurrency control: Uses LockService to prevent race conditions during simultaneous writes.
  * 
  * Instructions:
- * 1. Open Google Sheets (create a new sheet named e.g. "Wedding RSVPs 2026").
- * 2. In Google Sheets, click Extensions > Apps Script.
- * 3. Replace all code in the script editor with this file (Code.gs).
- * 4. Click "Deploy" > "New deployment".
- * 5. Select type: "Web app".
- * 6. Set "Execute as": "Me".
- * 7. Set "Who has access": "Anyone" (important: allows guests to submit without Google login).
- * 8. Click "Deploy", authorize permissions, and copy the Web App URL.
- * 9. Paste the Web App URL into your content.json (field: "rsvp.googleAppsScriptUrl").
+ * 1. Open your Google Sheet.
+ * 2. Click Extensions > Apps Script.
+ * 3. Replace the code in Code.gs with this hardened version.
+ * 4. Click Deploy > Manage deployments > Edit > New version, then click Deploy.
  */
 
 function setupSheet() {
   var doc = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = doc.getActiveSheet();
   
-  // Set headers if the sheet is empty
   if (sheet.getLastRow() === 0) {
     var headers = [
       "Timestamp",
-      "Full Name",
+      "First Name",
+      "Last Name",
       "Email",
-      "Dietary Notes",
+      "Attending",
+      "Has Plus One",
+      "Plus One First Name",
+      "Plus One Last Name",
+      "Dietary Preference",
       "Allergies",
-      "Will Come"
+      "Needs Bus",
+      "Bus Stop",
+      "Bus Notes"
     ];
     sheet.appendRow(headers);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#EFECE6");
@@ -33,15 +41,43 @@ function setupSheet() {
   }
 }
 
+/**
+ * Sanitizes input cells to prevent CSV/Formula Injection attacks.
+ * If a string begins with =, +, -, @, tab, or carriage return,
+ * it prepends a single quote (') so Google Sheets stores it strictly as plain text.
+ */
+function sanitizeCell(val, maxLen) {
+  if (val === null || val === undefined) return "";
+  var str = String(val).trim();
+  
+  // Enforce maximum permissible length
+  if (maxLen && str.length > maxLen) {
+    str = str.substring(0, maxLen);
+  }
+  
+  // Neutralize formula injection
+  if (/^[=+\-@\t\r]/.test(str)) {
+    return "'" + str;
+  }
+  return str;
+}
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
-  lock.tryLock(10000); // Wait up to 10s for concurrent submissions
+  
+  // Wait up to 10s for concurrent submissions
+  if (!lock.tryLock(10000)) {
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        status: "error",
+        message: "Server busy. Please try again."
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 
   try {
     var doc = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = doc.getActiveSheet();
-    
-    // Ensure header row exists
     setupSheet();
 
     var data;
@@ -49,27 +85,64 @@ function doPost(e) {
       try {
         data = JSON.parse(e.postData.contents);
       } catch (err) {
-        data = e.parameter;
+        data = e.parameter || {};
       }
     } else {
-      data = e.parameter;
+      data = e.parameter || {};
     }
 
-    var timestamp = new Date();
-    var fullName = data.fullName || "";
-    var email = data.email || "";
-    var dietaryNotes = data.dietaryNotes || "none";
-    var allergies = data.allergies || "";
-    var willCome = data.willCome || "";
+    // 1. Anti-Bot Honeypot trap: If filled, silently acknowledge without saving
+    if (data.honeypot_check && String(data.honeypot_check).trim().length > 0) {
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          status: "success",
+          message: "RSVP recorded successfully."
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
 
-    // Append row to sheet
+    // 2. Validate mandatory fields
+    var firstName = sanitizeCell(data.first_name, 60);
+    var lastName = sanitizeCell(data.last_name, 60);
+    var email = sanitizeCell(data.email, 120);
+
+    if (!firstName || !lastName || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          status: "error",
+          message: "Invalid or incomplete submission."
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // 3. Extract and sanitize remaining fields
+    var attending = (data.attending === true || data.attending === "true" || data.attending === "Yes") ? "Yes" : "No";
+    var hasPlusOne = (data.has_plus_one === true || data.has_plus_one === "true" || data.has_plus_one === "Yes") ? "Yes" : "No";
+    var plusOneFirstName = hasPlusOne === "Yes" ? sanitizeCell(data.plus_one_first_name, 60) : "";
+    var plusOneLastName = hasPlusOne === "Yes" ? sanitizeCell(data.plus_one_last_name, 60) : "";
+
+    var dietaryPreference = sanitizeCell(data.dietary_preference, 30) || "none";
+    var allergies = sanitizeCell(data.allergies, 200);
+
+    var needsBus = (data.needs_bus === true || data.needs_bus === "true" || data.needs_bus === "Yes") ? "Yes" : "No";
+    var busStop = needsBus === "Yes" ? sanitizeCell(data.bus_stop, 40) : "";
+    var busNotes = needsBus === "Yes" ? sanitizeCell(data.bus_notes, 300) : "";
+
+    // 4. Append sanitized row to private spreadsheet
     sheet.appendRow([
-      timestamp,
-      fullName,
+      new Date(),
+      firstName,
+      lastName,
       email,
-      dietaryNotes,
+      attending,
+      hasPlusOne,
+      plusOneFirstName,
+      plusOneLastName,
+      dietaryPreference,
       allergies,
-      willCome
+      needsBus,
+      busStop,
+      busNotes
     ]);
 
     return ContentService
@@ -80,10 +153,11 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
+    // Return safe generic error — do not expose internal error messages or sheet IDs
     return ContentService
       .createTextOutput(JSON.stringify({
         status: "error",
-        message: error.toString()
+        message: "Unable to process RSVP at this time."
       }))
       .setMimeType(ContentService.MimeType.JSON);
 

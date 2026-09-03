@@ -1,147 +1,161 @@
 {
   "meta": {
-    "title": "Elena & Lucas — We're Getting Married!",
-    "description": "Join us on our special day. Find event details, schedule, location, and RSVP online.",
-    "ogTitle": "Elena & Lucas' Wedding",
-    "ogDescription": "Celebrate with us on September 19, 2026",
+    "title": "Lourdes & Carlos — We're Getting Married!",
+    "description": "Join us on our special day. Find event details, schedule, location, bus timetables, and RSVP online.",
+    "ogTitle": "Lourdes & Carlos' Wedding",
+    "ogDescription": "Celebrate with us on Saturday, February 20, 2027",
     "themeColor": "#93856d"
   },
   "couple": {
-    "partner1": "Elena",
-    "partner2": "Lucas",
-    "monogram": "E & L",
-    "dateDisplay": "Saturday, September 19, 2026",
-    "targetDateIso": "2026-09-19T17:00:00",
-    "locationCity": "Mallorca, Spain"
+    "partner1": "Lourdes",
+    "partner2": "Carlos",
+    "monogram": "L & C",
+    "dateDisplay": "Sábado, 20 de Febrero de 2027",
+    "targetDateIso": "2027-02-20T13:00:00+02:00",
+    "locationCity": "Madrid, Spain"
   },
   "hero": {
     "tagline": "Together with our families",
-    "heading": "We're Getting Married",
-    "welcomeMessage": "We cannot wait to celebrate this new chapter of our lives surrounded by our favorite people.",
+    "heading": "Lourdes & Carlos",
+    "subheading": "We're Getting Married",
+    "welcomeMessage": "We cannot wait to celebrate this special day surrounded by our favorite people.",
     "rsvpButtonText": "RSVP Now",
-    "detailsButtonText": "View Schedule"
+    "detailsButtonText": "View Details"
   },
   "countdown": {
-    "title": "Counting Down the Days",
+    "title": "Save the Date",
+    "dateText": "February 20, 2027",
+    "timeText": "13:00 CET",
     "daysLabel": "Days",
     "hoursLabel": "Hours",
     "minutesLabel": "Minutes",
-    "secondsLabel": "Seconds"
+    "secondsLabel": "Seconds",
+    "calendarEvent": {
+      "title": "Lourdes & Carlos Wedding",
+      "description": "Wedding celebration of Lourdes and Carlos. Ceremony at Iglesia de Santa Bárbara followed by reception at Finca Las Jarillas.",
+      "location": "Madrid, Spain",
+      "startIso": "20270220T120000Z",
+      "endIso": "20270221T000000Z"
+    }
   },
-  "schedule": {
-    "title": "Event Schedule & Locations",
-    "subtitle": "Everything you need to know about our big day",
-    "events": [
+  "locations": {
+    "title": "Event Locations",
+    "subtitle": "Join us for our ceremony and reception",
+    "church": {
+      "badge": "Ceremony",
+      "name": "Iglesia de Santa Bárbara",
+      "time": "17:00",
+      "address": "Calle del General Castaños 2, 28004 Madrid",
+      "description": "Please arrive 15 minutes before the ceremony begins to be comfortably seated.",
+      "mapsUrl": "https://maps.google.com/?q=Parroquia+Santa+Barbara+Madrid"
+    },
+    "venue": {
+      "badge": "Reception",
+      "name": "Finca Las Jarillas",
+      "time": "19:00",
+      "address": "Carretera M-607, Km 19.8, 28049 Madrid",
+      "description": "Cocktails, dinner, and dancing under the stars following the ceremony.",
+      "mapsUrl": "https://maps.google.com/?q=Finca+Las+Jarillas+Madrid"
+    }
+  },
+  "transportation": {
+    "title": "Transportation & Shuttle Buses",
+    "subtitle": "Complimentary round-trip shuttle buses for all guests",
+    "note": "Please indicate on your RSVP if you will be using the shuttle service so we can reserve your seat.",
+    "routes": [
       {
-        "id": "ceremony",
-        "time": "17:00",
-        "title": "The Ceremony",
-        "venue": "Ermita de la Victoria",
-        "address": "Camí de la Victòria, 07400 Alcúdia, Illes Balears",
-        "description": "Please arrive 15 minutes early to find your seats before the ceremony begins.",
-        "googleMapsUrl": "https://maps.google.com/?q=Ermita+de+la+Victoria+Alcudia",
-        "calendarEvent": {
-          "title": "Elena & Lucas Wedding Ceremony",
-          "startIso": "20260919T150000Z",
-          "endIso": "20260919T163000Z",
-          "details": "Wedding ceremony of Elena & Lucas at Ermita de la Victoria."
-        }
+        "id": "route-1",
+        "name": "Plaza de España",
+        "badge": "Madrid",
+        "departurePoint": "Plaza de España (Near Hotel Riu / Edificio España)",
+        "outboundSchedule": [
+          { "time": "16:15", "destination": "Direct to Church" },
+          { "time": "18:15", "destination": "Direct to Finca from Church" }
+        ],
+        "returnSchedule": [
+          { "time": "02:00", "description": "First return bus to Plaza de España" },
+          { "time": "04:30", "description": "Final return bus to Plaza de España" }
+        ]
       },
       {
-        "id": "reception",
-        "time": "19:00",
-        "title": "Cocktail & Dinner",
-        "venue": "Finca Son Mir",
-        "address": "Ctra. de Manacor, Km 14, 07198 Palma, Illes Balears",
-        "description": "Cocktails, drinks, and local gastronomy followed by dinner under the olive trees.",
-        "googleMapsUrl": "https://maps.google.com/?q=Finca+Son+Mir+Palma",
-        "calendarEvent": {
-          "title": "Elena & Lucas Wedding Reception & Party",
-          "startIso": "20260919T170000Z",
-          "endIso": "20260920T020000Z",
-          "details": "Dinner and party celebration at Finca Son Mir."
-        }
-      },
-      {
-        "id": "party",
-        "time": "23:00 - Late",
-        "title": "Party & Open Bar",
-        "venue": "Finca Son Mir — Main Courtyard",
-        "address": "Ctra. de Manacor, Km 14, 07198 Palma, Illes Balears",
-        "description": "Music, dancing, and late-night snacks to dance the night away.",
-        "googleMapsUrl": "https://maps.google.com/?q=Finca+Son+Mir+Palma",
-        "calendarEvent": null
+        "id": "route-2",
+        "name": "ESIC",
+        "badge": "Pozuelo",
+        "departurePoint": "Avenida de Valdenigriales (Opposite ESIC University Campus)",
+        "outboundSchedule": [
+          { "time": "16:00", "destination": "Direct to Church" },
+          { "time": "18:15", "destination": "Direct to Finca from Church" }
+        ],
+        "returnSchedule": [
+          { "time": "02:00", "description": "First return bus to Pozuelo (ESIC)" },
+          { "time": "04:30", "description": "Final return bus to Pozuelo (ESIC)" }
+        ]
       }
     ]
   },
-  "infoPlaceholder": {
-    "eyebrow": "Guest Information",
-    "title": "Travel & Accommodations",
-    "subtitle": "Helpful details for our traveling guests",
-    "cards": [
-      {
-        "title": "Getting There",
-        "content": "Palma de Mallorca Airport (PMI) is located 20 minutes from the venue. Taxis, rental cars, and shuttle services are readily available at the terminal."
-      },
-      {
-        "title": "Where to Stay",
-        "content": "We have reserved room blocks at Hotel Valldemossa and boutique hotels in Alcúdia. Mention the 'Elena & Lucas Wedding' when booking for preferred rates."
-      },
-      {
-        "title": "Transportation & Shuttles",
-        "content": "Complimentary shuttle buses will depart from the central meeting point in Palma at 16:00 and return guests at 01:00 and 03:00."
-      }
-    ],
-    "note": "Feel free to reach out to us if you need help with any travel arrangements."
-  },
   "rsvp": {
     "title": "RSVP",
-    "subtitle": "Kindly respond by August 1, 2026",
-    "description": "Please let us know if you'll be joining us to celebrate. Submit one form per guest.",
-    "googleAppsScriptUrl": "",
-    "deadlineNote": "Please confirm before August 1st so we can finalize catering and seating.",
-    "successMessage": "Thank you for confirming! We can't wait to celebrate with you.",
-    "successDeclineMessage": "Thank you for letting us know. You will be warmly missed!",
+    "subtitle": "Kindly respond before August 15, 2026",
+    "description": "Please let us know if you will be joining us. Submit one response per main guest or couple.",
+    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxA5qOwJLJgde3sbPAQy3d_gVtU9ytG0T-i2bcZPk7XLSh3laBLeUhp_fLKMC0Y7IItag/exec",
+    "successHeading": "Thank You!",
+    "successMessage": "Your RSVP has been successfully recorded. We cannot wait to celebrate with you!",
+    "successDeclineMessage": "Thank you for letting us know. We will miss you dearly on our special day!",
     "labels": {
-      "fullName": "Full Name *",
-      "fullNamePlaceholder": "e.g. Maria Gonzalez",
-      "email": "Email *",
-      "emailPlaceholder": "e.g. maria@example.com",
-      "dietaryNotes": "Dietary Notes",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "e.g. Maria",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "e.g. Garcia",
+      "email": "Email Address",
+      "emailPlaceholder": "e.g. maria.garcia@example.com",
+      "attendingQuestion": "Will you be attending?",
+      "attendingYes": "Yes, I will attend with pleasure",
+      "attendingNo": "No, I regretfully decline",
+      "hasPlusOneQuestion": "Will you be bringing a companion / plus one?",
+      "plusOneFirstName": "Companion's First Name",
+      "plusOneFirstNamePlaceholder": "e.g. Carlos",
+      "plusOneLastName": "Companion's Last Name",
+      "plusOneLastNamePlaceholder": "e.g. Sanchez",
+      "dietaryPreference": "Dietary Preferences",
       "dietaryOptions": [
-        { "value": "none", "label": "None (Standard menu)" },
-        { "value": "vegan", "label": "Vegan" },
+        { "value": "none", "label": "None (Standard Menu)" },
         { "value": "vegetarian", "label": "Vegetarian" },
-        { "value": "no meat", "label": "No meat (Pescatarian / Fish only)" },
-        { "value": "carbotarian", "label": "Carbotarian" }
+        { "value": "gluten_free", "label": "Gluten-Free / Celiac" }
       ],
-      "allergies": "Allergies",
-      "allergiesPlaceholder": "e.g. Nuts, Lactose, Gluten / Celiac, Shellfish, or None",
-      "willCome": "Will come? *",
-      "willComeYes": "Yes, I will attend",
-      "willComeNo": "No, I regretfully decline",
-      "submitButton": "Send",
-      "submittingButton": "Sending...",
+      "allergies": "Allergies & Medical Restrictions",
+      "allergiesPlaceholder": "e.g. Peanuts, lactose, shellfish, or none",
+      "needsBusQuestion": "Do you need round-trip shuttle bus transportation?",
+      "needsBusYes": "Yes, reserve bus seats",
+      "needsBusNo": "No, traveling by private car",
+      "busStopLabel": "Select Your Bus Stop",
+      "busStopOptions": [
+        { "value": "plaza_espana", "label": "Route 1: Plaza de España (Madrid Centro)" },
+        { "value": "pozuelo_esic", "label": "Route 2: Pozuelo (ESIC University Campus)" }
+      ],
+      "busNotes": "Bus Comments or Special Needs",
+      "busNotesPlaceholder": "e.g. Traveling with baby stroller, only taking the return bus, etc.",
+      "submitButton": "Confirm RSVP",
+      "submittingButton": "Sending Confirmation...",
       "submitAnotherButton": "Submit Another RSVP"
     }
   },
   "gifts": {
     "title": "Gifts & Wishing Well",
     "subtitle": "Your presence is our greatest present",
-    "message": "Having you celebrate our wedding with us is the greatest gift of all. If you would still like to honor us with a contribution toward our honeymoon fund or new home, we have prepared our details below.",
+    "message": "Having you with us on our wedding day is all that we could ask for. If you wish to bless us with a gift toward our honeymoon or new beginnings, our details are below.",
     "bankDetails": {
-      "accountHolder": "Elena Smith & Lucas Garcia",
+      "accountHolder": "Lourdes B & Carlos R",
       "bankName": "Santander International",
       "iban": "ES91 0049 1500 0512 3456 7890",
       "bic": "BSCHESMMXXX",
       "concept": "Wedding Gift - [Your Name]"
     },
     "copyIbanButtonText": "Copy IBAN",
-    "copiedText": "IBAN Copied!"
+    "copiedText": "IBAN Copied to Clipboard!"
   },
   "footer": {
-    "signature": "Elena & Lucas",
-    "date": "September 19, 2026",
-    "tagline": "Made with love for our friends & family."
+    "signature": "Lourdes & Carlos",
+    "date": "February 20, 2027",
+    "tagline": "With love, Lourdes & Carlos"
   }
 }

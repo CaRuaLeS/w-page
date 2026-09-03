@@ -1,6 +1,6 @@
 # Google Apps Script Setup for RSVP Form
 
-This guide walks you through connecting your wedding website's RSVP form directly to a private Google Sheet in under 3 minutes, with **zero hosting cost** and **no technical maintenance**.
+This guide walks you through connecting your wedding website's RSVP form directly to a private Google Sheet in under 3 minutes, with **zero hosting cost**, **hardened anti-bot security**, and **zero maintenance**.
 
 ---
 
@@ -12,11 +12,11 @@ This guide walks you through connecting your wedding website's RSVP form directl
 
 ## Step 2: Open the Apps Script Editor
 1. In your Google Sheet menu, click **Extensions** > **Apps Script**.
-2. A new tab will open with the script editor. Delete any default code in `Code.gs`.
+2. Delete any default code in the script editor.
 
 ---
 
-## Step 3: Paste the Code
+## Step 3: Paste the Hardened Code
 1. Copy the entire contents of [`Code.gs`](./Code.gs) and paste it into the editor.
 2. Click the **Save icon** (💾 or `Ctrl+S` / `Cmd+S`).
 
@@ -26,12 +26,12 @@ This guide walks you through connecting your wedding website's RSVP form directl
 1. At the top right of the Apps Script window, click the blue **Deploy** button > **New deployment**.
 2. Click the gear icon (⚙️) next to *Select type* and choose **Web app**.
 3. Fill in the deployment details:
-   - **Description**: `Wedding RSVP API v1`
+   - **Description**: `Wedding RSVP API v2 (Hardened)`
    - **Execute as**: `Me (your_email@gmail.com)`
-   - **Who has access**: `Anyone` *(Crucial: Allows your guests to submit their RSVP without logging into Google)*
+   - **Who has access**: `Anyone` *(Allows your guests to submit their RSVP without logging into Google)*
 4. Click **Deploy**.
-5. When prompted, click **Authorize access**, select your Google account, and grant access (if you see an *Advanced* warning, click *Advanced* > *Go to Wedding RSVP (unsafe)* to approve).
-6. Copy the generated **Web App URL** (it looks like `https://script.google.com/macros/s/AKfycb.../exec`).
+5. When prompted, click **Authorize access**, select your Google account, and grant access (click *Advanced* > *Go to Wedding RSVP (unsafe)* if prompted).
+6. Copy the generated **Web App URL** (e.g. `https://script.google.com/macros/s/AKfycb.../exec`).
 
 ---
 
@@ -48,12 +48,27 @@ This guide walks you through connecting your wedding website's RSVP form directl
 
 ---
 
+## 🛡️ Security & Privacy Checklist
+
+1. **Keep the Google Sheet Strictly Private:**
+   - In Google Sheets, click the green **Share** button in the top right.
+   - Ensure *General access* is set to **Restricted** (only you and your partner's specific email addresses).
+   - **Never** change it to *"Anyone with the link can view"*.
+2. **Formula Injection Defense:**
+   - [`Code.gs`](./Code.gs) automatically sanitizes all user input cells by prepending a single quote (`'`) to any string starting with `=`, `+`, `-`, or `@`. This neutralizes malicious formulas (e.g. `=IMPORTXML`, `=HYPERLINK`) from executing when you open the spreadsheet.
+3. **Spam & Bot Protection:**
+   - The form contains an invisible honeypot field (`honeypot_check`) that traps automated web scrapers. If populated, the script silently discards the entry without wasting Google quota or cluttering your sheet.
+4. **Account Safety:**
+   - Web App submissions execute write-only operations (`appendRow`) on this specific spreadsheet. Guests **never** receive access to your Google account, password, emails, or Google Drive files.
+
+---
+
 ## Google Sheet Output Schema
 
-When guests submit their RSVP, rows are automatically appended with the following columns:
+When guests submit their RSVP, rows are automatically appended with the following 13 columns:
 
-| Column A | Column B | Column C | Column D | Column E | Column F |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Timestamp** | **Full Name** | **Email** | **Dietary Notes** | **Allergies** | **Will Come** |
-| `2026-08-15 15:30:00` | `Maria Gonzalez` | `maria@example.com` | `vegetarian` | `Lactose intolerant` | `Yes` |
-| `2026-08-15 16:10:22` | `David Smith` | `david@example.com` | `none` | `None` | `No` |
+| Col A | Col B | Col C | Col D | Col E | Col F | Col G | Col H | Col I | Col J | Col K | Col L | Col M |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Timestamp** | **First Name** | **Last Name** | **Email** | **Attending** | **Has Plus One** | **Plus One First Name** | **Plus One Last Name** | **Dietary Preference** | **Allergies** | **Needs Bus** | **Bus Stop** | **Bus Notes** |
+| `2026-09-03 18:30` | `Maria` | `Garcia` | `maria@example.com` | `Yes` | `Yes` | `Carlos` | `Sanchez` | `gluten_free` | `Celiac` | `Yes` | `plaza_espana` | `Stroller onboard` |
+| `2026-09-03 19:10` | `David` | `Smith` | `david@example.com` | `No` | `No` | `""` | `""` | `none` | `None` | `No` | `""` | `""` |

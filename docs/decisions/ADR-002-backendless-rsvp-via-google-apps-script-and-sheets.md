@@ -1,48 +1,40 @@
 # ADR-002: Backendless RSVP via Google Apps Script & Google Sheets
 
 ## Status
-Accepted
+Accepted (Updated with refined conditional form schema, companion support, and shuttle routes)
 
 ## Date
-2026-08-15 (Updated with field schema and multi-guest reset lifecycle)
+2026-09-03
 
 ## Context
-The wedding website needs an RSVP collection system to gather attendee confirmations, contact emails, dietary preferences, and allergy details.
+The wedding website requires a mobile-first RSVP submission mechanism to record attendees, companions (+1s), contact details, dietary requirements, and bus transit logistics.
 Key constraints:
-- **No external database server:** Avoid maintaining an SQL/NoSQL database or paid backend (Postgres, Firebase, Supabase).
-- **User experience:** The RSVP form must be custom-styled to match the wedding aesthetic—no jarring third-party iframes or off-site redirects.
-- **Multi-guest & household submissions:** A single user often needs to submit separate RSVPs for their spouse, family member, or friend on the same device. The form must cleanly reset all fields after each successful submission without requiring a page refresh.
-- **Data accessibility for the couple:** The couple needs real-time access to the guest list in a familiar spreadsheet tool (Google Sheets) to share with caterers and wedding planners.
+- **No external database server:** Eliminate paid SQL/NoSQL infrastructure (Supabase, Postgres, Firebase).
+- **Conditional Fields:** The form must reactively reveal/hide fields (e.g. Companion Names if `has_plus_one` is checked; Bus Stop selection and notes if `needs_bus` is true) without jarring layout shifts on mobile screens.
+- **Data Accessibility:** The couple needs immediate, structured access in Google Sheets to coordinate with caterers and bus transport companies.
+- **Multi-Guest Submission:** A user can register multiple members sequentially with automatic field cleanup upon completion.
 
 ## Decision
-Use **Google Apps Script Web App (`doPost`)** connected directly to a private **Google Sheet**. The frontend submits form payloads via asynchronous `fetch()` using `POST`.
-
-### Post-Submission Form Reset Lifecycle
-To provide a frictionless experience for multi-guest/household registrations:
-1. **Submission & Loading:** The submit button disables, showing a loading spinner to prevent duplicate submissions.
-2. **Success State:** Upon successful response from the Google Apps Script endpoint, the form hides and displays a celebratory confirmation card.
-3. **Automatic Field Clearing:** All input fields are immediately wiped:
-   - `fullName`: cleared (`""`)
-   - `email`: cleared (`""`)
-   - `dietaryNotes`: reset to default (`"none"`)
-   - `allergies`: cleared (`""`)
-   - `willCome`: reset to default (`"Yes"`)
-   - Validation error messages: cleared
-4. **"Submit Another RSVP" Flow:** A button labeled *"Submit Another RSVP"* allows the user to return to the empty form in one click, enabling instant entry for another person.
+Use **Google Apps Script Web App (`doPost`)** connected directly to a private **Google Sheet**. The client performs asynchronous `fetch()` `POST` requests.
 
 ---
 
 ## RSVP Form Field Specification & Google Sheet Schema
 
-The custom RSVP form collects the following exact fields:
-
 | Field Name | Type | Options / Rules | Required | Google Sheet Column Header |
 | :--- | :--- | :--- | :--- | :--- |
-| **Full Name** | Text input | Guest's complete name | **Yes** | `Full Name` |
-| **Email** | Email input | Valid email format | **Yes** | `Email` |
-| **Dietary Notes** | Select Dropdown | `none` (default), `vegan`, `vegetarian`, `no meat`, `carbotarian` | No (default: none) | `Dietary Notes` |
-| **Allergies** | Text input | Free-form notes (e.g. peanuts, lactose, celiac, shellfish) | No | `Allergies` |
-| **Will come?** | Radio / Toggle | `Yes` or `No` | **Yes** | `Will Come` |
+| **first_name** | Text input | Guest's given name | **Yes** | `First Name` |
+| **last_name** | Text input | Guest's family name | **Yes** | `Last Name` |
+| **email** | Email input | Valid RFC email string | **Yes** | `Email` |
+| **attending** | Boolean (Radio) | `true` ("Yes, I will attend") / `false` ("No, I cannot attend") | **Yes** | `Attending` |
+| **has_plus_one** | Boolean (Toggle) | `true` or `false` (default: `false`) | No | `Has Plus One` |
+| **plus_one_first_name** | Text input | Conditional on `has_plus_one = true` | Conditional | `Plus One First Name` |
+| **plus_one_last_name** | Text input | Conditional on `has_plus_one = true` | Conditional | `Plus One Last Name` |
+| **dietary_preference** | Select | `none`, `vegetarian`, `gluten_free` | **Yes** (default: `none`) | `Dietary Preference` |
+| **allergies** | Text input | Free-form allergy & medical notes | No | `Allergies` |
+| **needs_bus** | Boolean (Toggle) | `true` or `false` (default: `false`) | No | `Needs Bus` |
+| **bus_stop** | Select | Conditional on `needs_bus = true` (`plaza_espana`, `pozuelo_esic`) | Conditional | `Bus Stop` |
+| **bus_notes** | Textarea | Free-form notes for bus logistics | No | `Bus Notes` |
 | *(Auto)* | Timestamp | ISO / Locale date of submission | Generated by script | `Timestamp` |
 
 ---
@@ -52,46 +44,31 @@ The custom RSVP form collects the following exact fields:
 ```
 [Guest Mobile Browser]
        │
-       │ Asynchronous POST (JSON / URL-encoded)
+       │ Asynchronous POST (JSON / text/plain)
        ▼
 [Google Apps Script Web App (doPost)]
        │
-       ├─ Extracts: { fullName, email, dietaryNotes, allergies, willCome }
-       ├─ Appends Row: [ Timestamp, Full Name, Email, Dietary Notes, Allergies, Will Come ]
+       ├─ Extracts: { first_name, last_name, email, attending, has_plus_one,
+       │              plus_one_first_name, plus_one_last_name, dietary_preference,
+       │              allergies, needs_bus, bus_stop, bus_notes }
        │
+       ├─ Appends Row to Sheet:
+       │  [ Timestamp, First Name, Last Name, Email, Attending, Has Plus One,
+       │    Plus One First Name, Plus One Last Name, Dietary Preference, Allergies,
+       │    Needs Bus, Bus Stop, Bus Notes ]
        ▼
 [Private Google Spreadsheet]
        │
        ▼
 [Client Response & Auto-Reset]
-  ├─ Displays Success Card
-  ├─ Clears all inputs & restores dropdown to 'none'
-  └─ Provides "Submit Another RSVP" button for next guest
+   ├─ Shows Success Celebration Card
+   ├─ Resets form & collapses conditional sections
+   └─ Provides "Submit Another RSVP" button for subsequent entries
 ```
 
 ---
 
-## Alternatives Considered
-
-### Google Forms Iframe Embed
-- **Pros:** Native Google Sheets integration, zero coding.
-- **Cons:** Embedded Google Forms are notoriously clunky on mobile devices, break the visual typography and aesthetic of the page, cannot be styled with custom CSS, and display Google branding.
-- **Rejected:** Unacceptable mobile UX for a luxury wedding invitation.
-
-### Custom Backend (Node.js / Express / Python / Supabase)
-- **Pros:** Full API control, relational database schema.
-- **Cons:** Requires hosting, database configuration, connection string secrets, and potential cold-start latency or maintenance costs.
-- **Rejected:** Excessive complexity for appending rows to a guest spreadsheet.
-
-### Formspree / Typeform / Formkeep (SaaS Form Services)
-- **Pros:** Hosted form endpoints.
-- **Cons:** Paid tiers required for Google Sheets synchronization or high submission volumes, rate limits on free plans.
-- **Rejected:** Google Apps Script is 100% free with unlimited personal quota for wedding RSVP volume.
-
----
-
 ## Consequences
-- **Zero Ongoing Cost:** 100% free Google Cloud / Drive tier.
-- **Data Sovereignty:** All responses reside in the couple's private Google Drive.
-- **Frictionless Multi-Submission:** Users registering multiple people can do so sequentially without stale form data or page reloads.
-- **Custom UI Freedom:** Complete control over form styling, loading indicators, toast notifications, and client validation.
+- **Complete Logistics Coverage:** Immediate visibility into total attendee count, +1 headcounts, special dietary requirements for the kitchen, and seat reservations for each bus route.
+- **Zero Cost:** 100% free Google Cloud / Drive tier with unlimited personal quota.
+- **Accessibility & UX:** Accessible form controls (`aria-expanded`, `aria-hidden`, programmatic focus) ensure smooth interaction across all screen sizes.

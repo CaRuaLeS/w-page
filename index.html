@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lourdes &amp; Carlos — We're Getting Married!</title>
+  <meta name="description" content="Join us on our special day. Find event details, schedule, location, bus timetables, and RSVP online.">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Lourdes &amp; Carlos' Wedding">
+  <meta property="og:description" content="Celebrate with us on Saturday, February 20, 2027">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#93856d">
+
+  <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans (Option 1) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. HERO / INTRODUCTION SECTION
+       ======================================================================== -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-tagline" id="hero-tagline">Together with our families</p>
+      <h1 class="hero-names" id="hero-names">Lourdes &amp; Carlos</h1>
+      <p class="hero-subheading" id="hero-subheading">We're Getting Married</p>
+      <p class="hero-message" id="hero-message">
+        We cannot wait to celebrate this special day surrounded by our favorite people.
+      </p>
+      <div class="hero-actions">
+        <a href="#rsvp" class="btn btn-primary" id="hero-rsvp-btn">RSVP Now</a>
+        <a href="#locations" class="btn btn-secondary" id="hero-details-btn">View Details</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ========================================================================
+         2. COUNTDOWN & DATE SECTION
+         ======================================================================== -->
+    <section class="section countdown-section" id="countdown-section">
+      <div class="countdown-card">
+        <span class="section-eyebrow" id="countdown-title">Save the Date</span>
+        <div class="date-badge-wrapper">
+          <p class="date-badge" id="countdown-date-display">Sábado, 20 de Febrero de 2027</p>
+          <span class="time-badge" id="countdown-time-display">13:00 CET • Madrid, Spain</span>
+        </div>
+
+        <!-- Live Countdown Ticker Grid -->
+        <div class="countdown-grid" role="timer" aria-live="off">
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countdown-seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Add to Calendar Widget -->
+        <div class="calendar-widget">
+          <button type="button" class="btn btn-outline" id="calendar-trigger-btn" aria-haspopup="true" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Add to Calendar
+          </button>
+          <div class="calendar-dropdown" id="calendar-dropdown" role="menu">
+            <button type="button" class="calendar-option" id="add-to-google-cal" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              Google Calendar
+            </button>
+            <button type="button" class="calendar-option" id="download-ics-cal" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Apple Calendar / Outlook (.ics)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. EVENT LOCATIONS SECTION (Stacked: Church first, Venue second)
+         ======================================================================== -->
+    <section class="section locations-section" id="locations">
+      <div class="section-header">
+        <span class="section-eyebrow">Where &amp; When</span>
+        <h2 class="section-title">Event Locations</h2>
+        <p class="section-subtitle">Join us as we celebrate our ceremony followed by cocktails and dinner</p>
+      </div>
+
+      <div class="locations-stack">
+        <!-- Card 1: Ceremony (Church) -->
+        <article class="location-card" id="location-church">
+          <div class="card-header-row">
+            <span class="pill-badge">Ceremony</span>
+            <span class="pill-time">17:00</span>
+          </div>
+          <h3 class="card-title" id="church-name">Iglesia de Santa Bárbara</h3>
+          <p class="card-address" id="church-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Calle del General Castaños 2, 28004 Madrid</span>
+          </p>
+          <p class="card-description" id="church-desc">
+            Please arrive 15 minutes before the ceremony begins to be comfortably seated.
+          </p>
+          <a href="https://maps.google.com/?q=Parroquia+Santa+Barbara+Madrid" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block" id="church-maps-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+            Open in Maps
+          </a>
+        </article>
+
+        <!-- Card 2: Reception (Finca / Venue) -->
+        <article class="location-card" id="location-venue">
+          <div class="card-header-row">
+            <span class="pill-badge">Reception</span>
+            <span class="pill-time">19:00</span>
+          </div>
+          <h3 class="card-title" id="venue-name">Finca Las Jarillas</h3>
+          <p class="card-address" id="venue-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Carretera M-607, Km 19.8, 28049 Madrid</span>
+          </p>
+          <p class="card-description" id="venue-desc">
+            Cocktails, dinner, and dancing under the stars following the ceremony.
+          </p>
+          <a href="https://maps.google.com/?q=Finca+Las+Jarillas+Madrid" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block" id="venue-maps-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+            Open in Maps
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. TRANSPORTATION / SHUTTLE BUSES SECTION
+         ======================================================================== -->
+    <section class="section transport-section" id="transport">
+      <div class="section-header">
+        <span class="section-eyebrow">Guest Logistics</span>
+        <h2 class="section-title" id="transport-title">Transportation &amp; Shuttles</h2>
+        <p class="section-subtitle" id="transport-subtitle">
+          Complimentary round-trip shuttle buses will be available for all guests. Please reserve your seats in the RSVP form below.
+        </p>
+      </div>
+
+      <div class="transport-container" id="transport-container">
+        <!-- Route 1: Plaza de España -->
+        <article class="route-card" id="route-1">
+          <div class="card-header-row">
+            <span class="pill-badge route-badge">Plaza de España</span>
+            <span class="pill-time">Madrid</span>
+          </div>
+          <div class="route-location">
+            <strong>Pickup Point:</strong> Plaza de España (Near Hotel Riu / Edificio España)
+          </div>
+          <div class="timetable-block">
+            <p class="timetable-heading">Outbound to Wedding</p>
+            <ul class="timetable-list">
+              <li class="timetable-item">
+                <span class="time-tag">16:15</span>
+                <span class="time-desc">Direct to Church</span>
+              </li>
+              <li class="timetable-item">
+                <span class="time-tag">18:15</span>
+                <span class="time-desc">Direct to Finca from Church</span>
+              </li>
+            </ul>
+          </div>
+          <div class="timetable-block">
+            <p class="timetable-heading">Return Trips to Plaza de España</p>
+            <ul class="timetable-list">
+              <li class="timetable-item">
+                <span class="time-tag">02:00</span>
+                <span class="time-desc">First return bus to Plaza de España</span>
+              </li>
+              <li class="timetable-item">
+                <span class="time-tag">04:30</span>
+                <span class="time-desc">Final return bus to Plaza de España</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Route 2: ESIC -->
+        <article class="route-card" id="route-2">
+          <div class="card-header-row">
+            <span class="pill-badge route-badge">ESIC</span>
+            <span class="pill-time">Pozuelo</span>
+          </div>
+          <div class="route-location">
+            <strong>Pickup Point:</strong> Avenida de Valdenigriales (Opposite ESIC Campus)
+          </div>
+          <div class="timetable-block">
+            <p class="timetable-heading">Outbound to Wedding</p>
+            <ul class="timetable-list">
+              <li class="timetable-item">
+                <span class="time-tag">16:00</span>
+                <span class="time-desc">Departure direct to Church</span>
+              </li>
+              <li class="timetable-item">
+                <span class="time-tag">18:15</span>
+                <span class="time-desc">Transfer from Church to Finca Las Jarillas</span>
+              </li>
+            </ul>
+          </div>
+          <div class="timetable-block">
+            <p class="timetable-heading">Return Trips to Pozuelo (ESIC)</p>
+            <ul class="timetable-list">
+              <li class="timetable-item">
+                <span class="time-tag">02:00</span>
+                <span class="time-desc">First return bus</span>
+              </li>
+              <li class="timetable-item">
+                <span class="time-tag">04:30</span>
+                <span class="time-desc">Final return bus</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. RSVP FORM SECTION (Reactive & Mobile-First)
+         ======================================================================== -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="section-header">
+        <span class="section-eyebrow">Confirm Attendance</span>
+        <h2 class="section-title">RSVP</h2>
+        <p class="section-subtitle">
+          Kindly respond before August 15, 2026. Submit one response per guest or couple.
+        </p>
+      </div>
+
+      <div class="rsvp-wrapper">
+        <!-- RSVP Form -->
+        <form id="rsvp-form" novalidate>
+
+          <!-- Anti-Bot Honeypot (Hidden from human guests & screen readers) -->
+          <div class="sr-only" aria-hidden="true">
+            <label for="honeypot_check">Do not fill this field</label>
+            <input type="text" id="honeypot_check" name="honeypot_check" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Row: First Name & Last Name -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first_name" class="form-label">First Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="first_name" name="first_name" class="form-control" placeholder="e.g. Maria" required maxlength="60" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="last_name" class="form-label">Last Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="last_name" name="last_name" class="form-control" placeholder="e.g. Garcia" required maxlength="60" autocomplete="family-name">
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="e.g. maria.garcia@example.com" required maxlength="120" autocomplete="email">
+          </div>
+
+          <!-- Attending Radio Group -->
+          <div class="form-group">
+            <span class="form-label">Will you be attending? <span class="req" aria-hidden="true">*</span></span>
+            <div class="radio-pill-group" role="radiogroup" aria-label="Attendance Confirmation">
+              <label class="radio-pill-label">
+                <input type="radio" name="attending" value="true" checked>
+                <span>Yes, I will attend</span>
+              </label>
+              <label class="radio-pill-label">
+                <input type="radio" name="attending" value="false">
+                <span>No, I decline</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Has Plus One Toggle -->
+          <div class="toggle-card">
+            <label for="has_plus_one" class="toggle-label">
+              <span class="toggle-title">Will you be bringing a companion / plus one?</span>
+              <span class="switch">
+                <input type="checkbox" id="has_plus_one" name="has_plus_one" aria-expanded="false" aria-controls="companion-fields">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Conditional Fields: Companion Name -->
+          <div class="conditional-fields" id="companion-fields" aria-hidden="true">
+            <div class="conditional-inner">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="plus_one_first_name" class="form-label">Companion First Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="plus_one_first_name" name="plus_one_first_name" class="form-control" placeholder="e.g. Carlos" maxlength="60">
+                </div>
+                <div class="form-group">
+                  <label for="plus_one_last_name" class="form-label">Companion Last Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="plus_one_last_name" name="plus_one_last_name" class="form-control" placeholder="e.g. Sanchez" maxlength="60">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dietary Preferences -->
+          <div class="form-group">
+            <label for="dietary_preference" class="form-label">Dietary Preference <span class="req" aria-hidden="true">*</span></label>
+            <select id="dietary_preference" name="dietary_preference" class="form-control" required>
+              <option value="none">None (Standard Menu)</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="gluten_free">Gluten-Free / Celiac</option>
+            </select>
+          </div>
+
+          <!-- Allergies -->
+          <div class="form-group">
+            <label for="allergies" class="form-label">Allergies &amp; Medical Restrictions</label>
+            <input type="text" id="allergies" name="allergies" class="form-control" placeholder="e.g. Peanuts, lactose, shellfish, or none" maxlength="200">
+          </div>
+
+          <!-- Needs Bus Toggle -->
+          <div class="toggle-card">
+            <label for="needs_bus" class="toggle-label">
+              <span class="toggle-title">Do you need round-trip shuttle bus transportation?</span>
+              <span class="switch">
+                <input type="checkbox" id="needs_bus" name="needs_bus" aria-expanded="false" aria-controls="bus-fields">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Conditional Fields: Bus Stop & Notes -->
+          <div class="conditional-fields" id="bus-fields" aria-hidden="true">
+            <div class="conditional-inner">
+              <div class="form-group">
+                <label for="bus_stop" class="form-label">Select Your Bus Stop <span class="req" aria-hidden="true">*</span></label>
+                <select id="bus_stop" name="bus_stop" class="form-control">
+                  <option value="" disabled selected>-- Choose your departure location --</option>
+                  <option value="plaza_espana">Route 1: Plaza de España (Madrid Centro)</option>
+                  <option value="pozuelo_esic">Route 2: Pozuelo (ESIC Campus)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bus_notes" class="form-label">Bus Comments or Special Needs</label>
+                <textarea id="bus_notes" name="bus_notes" class="form-control" placeholder="e.g. Traveling with baby stroller, only taking the return bus, etc." maxlength="300"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-block" id="rsvp-submit-btn">
+            <span id="submit-text">Confirm RSVP</span>
+            <span class="spinner sr-only" id="submit-spinner" aria-hidden="true"></span>
+          </button>
+
+          <!-- Error Alert Banner -->
+          <div class="error-banner sr-only" id="rsvp-error-banner" role="alert" style="margin-top: 1rem; color: var(--color-error); text-align: center; font-size: 0.875rem;"></div>
+        </form>
+
+        <!-- Celebratory Confirmation Screen (Hidden by default) -->
+        <div class="rsvp-success-card" id="rsvp-success-card" aria-live="polite">
+          <span class="celebration-icon" aria-hidden="true">🥂</span>
+          <h3 class="success-heading" id="success-heading">Thank You!</h3>
+          <p class="success-message" id="success-message">
+            Your RSVP has been successfully recorded. We cannot wait to celebrate with you!
+          </p>
+          <button type="button" class="btn btn-outline" id="submit-another-btn">
+            Submit Another RSVP
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. GIFTS & WISHING WELL (Supplementary Section)
+         ======================================================================== -->
+    <section class="section gifts-section" id="gifts">
+      <div class="gifts-card">
+        <span class="section-eyebrow" id="gifts-eyebrow">Wishing Well</span>
+        <h2 class="section-title" id="gifts-title">Gifts &amp; Wishing Well</h2>
+        <p class="section-subtitle" id="gifts-subtitle">Your presence is our greatest present</p>
+        <p class="section-subtitle" id="gifts-message" style="margin-top: 0.5rem; font-size: 0.875rem;">
+          Having you with us on our wedding day is all that we could ask for. If you wish to bless us with a gift toward our honeymoon or new beginnings, our details are below.
+        </p>
+
+        <div class="bank-info-box">
+          <div class="bank-row">
+            <span class="bank-label">Account Holder:</span>
+            <span class="bank-value" id="bank-holder">Lourdes B &amp; Carlos R</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Bank Name:</span>
+            <span class="bank-value" id="bank-name">Santander International</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">IBAN:</span>
+            <span class="bank-value" id="bank-iban">ES91 0049 1500 0512 3456 7890</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">BIC / SWIFT:</span>
+            <span class="bank-value" id="bank-bic">BSCHESMMXXX</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline" id="copy-iban-btn" data-iban="ES91 0049 1500 0512 3456 7890">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="copy-iban-text">Copy IBAN</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <p class="footer-names" id="footer-names">Lourdes &amp; Carlos</p>
+    <p id="footer-date">February 20, 2027 • Madrid, Spain</p>
+    <p id="footer-tagline" style="margin-top: 0.5rem; font-size: 0.75rem;">With love, Lourdes &amp; Carlos</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
