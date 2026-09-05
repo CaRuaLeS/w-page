@@ -197,7 +197,7 @@ export function initRsvp(config = {}) {
       if (yesRadio) yesRadio.checked = true;
 
       const dietarySelect = form.querySelector('#dietary_preference');
-      if (dietarySelect) dietarySelect.value = 'none';
+      if (dietarySelect) dietarySelect.value = dietarySelect.options[0]?.value || 'none';
 
       const honeypotEl = form.querySelector('#honeypot_check');
       if (honeypotEl) honeypotEl.value = '';

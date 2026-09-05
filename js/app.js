@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     title: 'Lourdes & Carlos Wedding',
     description: 'Wedding ceremony and reception of Lourdes & Carlos in Madrid.',
     location: 'Madrid, Spain',
-    startIso: '20270220T120000Z',
+    startIso: '20270220T110000Z',
     endIso: '20270221T000000Z'
   };
   initCalendar(calendarData);
@@ -48,12 +48,18 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Hydrates DOM elements from content.json
  */
 function hydrateContent(content) {
-  // Page Title
-  if (content.meta?.title) {
-    document.title = content.meta.title;
+  // 1. Meta & SEO tags
+  if (content.meta) {
+    if (content.meta.title) {
+      document.title = content.meta.title;
+    }
+    setMeta('meta[name="description"]', content.meta.description);
+    setMeta('meta[property="og:title"]', content.meta.ogTitle);
+    setMeta('meta[property="og:description"]', content.meta.ogDescription);
+    setMeta('meta[name="theme-color"]', content.meta.themeColor);
   }
 
-  // Hero
+  // 2. Hero Section
   setText('hero-tagline', content.hero?.tagline);
   setText('hero-names', content.hero?.heading);
   setText('hero-subheading', content.hero?.subheading);
@@ -61,20 +67,31 @@ function hydrateContent(content) {
   setText('hero-rsvp-btn', content.hero?.rsvpButtonText);
   setText('hero-details-btn', content.hero?.detailsButtonText);
 
-  // Countdown & Date
+  // 3. Countdown & Date Section
   setText('countdown-title', content.countdown?.title);
-  if (content.couple?.dateDisplay) {
-    setText('countdown-date-display', content.couple.dateDisplay);
+  const displayDate = content.countdown?.dateText || content.couple?.dateDisplay;
+  if (displayDate) {
+    setText('countdown-date-display', displayDate);
   }
   if (content.countdown?.timeText) {
     const city = content.couple?.locationCity ? ` • ${content.couple.locationCity}` : '';
     setText('countdown-time-display', `${content.countdown.timeText}${city}`);
   }
+  setText('countdown-label-days', content.countdown?.daysLabel);
+  setText('countdown-label-hours', content.countdown?.hoursLabel);
+  setText('countdown-label-minutes', content.countdown?.minutesLabel);
+  setText('countdown-label-seconds', content.countdown?.secondsLabel);
 
-  // Church
+  // 4. Locations Section (Titles, Subtitles, Badges, Times, and Content)
+  setText('locations-title', content.locations?.title);
+  setText('locations-subtitle', content.locations?.subtitle);
+
+  // Church (Ceremony)
   if (content.locations?.church) {
+    setText('church-badge', content.locations.church.badge);
+    setText('church-time', content.locations.church.time);
     setText('church-name', content.locations.church.name);
-    setText('church-address', content.locations.church.address);
+    setText('church-address-text', content.locations.church.address);
     setText('church-desc', content.locations.church.description);
     const churchLink = document.getElementById('church-maps-link');
     if (churchLink && content.locations.church.mapsUrl) {
@@ -82,10 +99,12 @@ function hydrateContent(content) {
     }
   }
 
-  // Venue
+  // Venue (Reception)
   if (content.locations?.venue) {
+    setText('venue-badge', content.locations.venue.badge);
+    setText('venue-time', content.locations.venue.time);
     setText('venue-name', content.locations.venue.name);
-    setText('venue-address', content.locations.venue.address);
+    setText('venue-address-text', content.locations.venue.address);
     setText('venue-desc', content.locations.venue.description);
     const venueLink = document.getElementById('venue-maps-link');
     if (venueLink && content.locations.venue.mapsUrl) {
@@ -93,19 +112,67 @@ function hydrateContent(content) {
     }
   }
 
-  // Transportation & Shuttle Buses
+  // 5. Transportation & Shuttle Buses
   if (content.transportation) {
     hydrateTransportation(content.transportation);
   }
 
-  // RSVP Bus Stop Dropdown Sync
-  hydrateBusStopOptions(content);
+  // 6. RSVP Section & Form Controls
+  if (content.rsvp) {
+    setText('rsvp-title', content.rsvp.title);
+    if (content.rsvp.subtitle) {
+      const fullSubtitle = content.rsvp.description
+        ? `${content.rsvp.subtitle}. ${content.rsvp.description}`
+        : content.rsvp.subtitle;
+      setText('rsvp-subtitle', fullSubtitle);
+    }
 
-  // Gifts & Bank Details
+    const labels = content.rsvp.labels;
+    if (labels) {
+      setLabel('label-first-name', labels.firstName, true);
+      setAttr('first_name', 'placeholder', labels.firstNamePlaceholder);
+
+      setLabel('label-last-name', labels.lastName, true);
+      setAttr('last_name', 'placeholder', labels.lastNamePlaceholder);
+
+      setLabel('label-email', labels.email, true);
+      setAttr('email', 'placeholder', labels.emailPlaceholder);
+
+      setLabel('label-attending', labels.attendingQuestion, true);
+      setText('label-attending-yes', labels.attendingYes);
+      setText('label-attending-no', labels.attendingNo);
+
+      setText('label-has-plus-one', labels.hasPlusOneQuestion);
+      setLabel('label-plus-one-first', labels.plusOneFirstName, true);
+      setAttr('plus_one_first_name', 'placeholder', labels.plusOneFirstNamePlaceholder);
+
+      setLabel('label-plus-one-last', labels.plusOneLastName, true);
+      setAttr('plus_one_last_name', 'placeholder', labels.plusOneLastNamePlaceholder);
+
+      setLabel('label-dietary', labels.dietaryPreference, true);
+      hydrateDietaryOptions(content);
+
+      setText('label-allergies', labels.allergies);
+      setAttr('allergies', 'placeholder', labels.allergiesPlaceholder);
+
+      setText('label-needs-bus', labels.needsBusQuestion);
+      setLabel('label-bus-stop', labels.busStopLabel, true);
+      hydrateBusStopOptions(content);
+
+      setText('label-bus-notes', labels.busNotes);
+      setAttr('bus_notes', 'placeholder', labels.busNotesPlaceholder);
+
+      setText('submit-text', labels.submitButton);
+      setText('submit-another-text', labels.submitAnotherButton);
+    }
+  }
+
+  // 7. Gifts & Bank Details
   if (content.gifts) {
     setText('gifts-title', content.gifts.title);
     setText('gifts-subtitle', content.gifts.subtitle);
     setText('gifts-message', content.gifts.message);
+    setText('copy-iban-text', content.gifts.copyIbanButtonText);
 
     if (content.gifts.bankDetails) {
       const b = content.gifts.bankDetails;
@@ -113,6 +180,7 @@ function hydrateContent(content) {
       setText('bank-name', b.bankName);
       setText('bank-iban', b.iban);
       setText('bank-bic', b.bic);
+      setText('bank-concept', b.concept);
 
       const copyBtn = document.getElementById('copy-iban-btn');
       if (copyBtn && b.iban) {
@@ -121,7 +189,7 @@ function hydrateContent(content) {
     }
   }
 
-  // Footer
+  // 8. Footer Section
   if (content.footer) {
     setText('footer-names', content.footer.signature);
     if (content.footer.date) {
@@ -140,11 +208,16 @@ function hydrateTransportation(transportData) {
 
   setText('transport-title', transportData.title);
   setText('transport-subtitle', transportData.subtitle);
+  setText('transport-note', transportData.note);
 
   const container = document.getElementById('transport-container');
   if (!container || !Array.isArray(transportData.routes) || transportData.routes.length === 0) {
     return;
   }
+
+  const pickupLabel = transportData.labels?.pickupPoint || 'Pickup Point:';
+  const outboundHeading = transportData.labels?.outboundHeading || 'Outbound to Wedding';
+  const returnHeading = transportData.labels?.returnHeading || 'Return Trips';
 
   container.innerHTML = transportData.routes.map(route => {
     const outboundList = Array.isArray(route.outboundSchedule) ? route.outboundSchedule : [];
@@ -172,12 +245,12 @@ function hydrateTransportation(transportData) {
         </div>
         ${route.departurePoint ? `
           <div class="route-location">
-            <strong>Pickup Point:</strong> ${escapeHtml(route.departurePoint)}
+            <strong>${escapeHtml(pickupLabel)}</strong> ${escapeHtml(route.departurePoint)}
           </div>
         ` : ''}
         ${outboundHtml ? `
           <div class="timetable-block">
-            <p class="timetable-heading">Outbound to Wedding</p>
+            <p class="timetable-heading">${escapeHtml(outboundHeading)}</p>
             <ul class="timetable-list">
               ${outboundHtml}
             </ul>
@@ -185,7 +258,7 @@ function hydrateTransportation(transportData) {
         ` : ''}
         ${returnHtml ? `
           <div class="timetable-block">
-            <p class="timetable-heading">Return Trips</p>
+            <p class="timetable-heading">${escapeHtml(returnHeading)}</p>
             <ul class="timetable-list">
               ${returnHtml}
             </ul>
@@ -194,6 +267,22 @@ function hydrateTransportation(transportData) {
       </article>
     `;
   }).join('');
+}
+
+/**
+ * Dynamically populates dietary preference options from content.json
+ */
+function hydrateDietaryOptions(content) {
+  const dietarySelect = document.getElementById('dietary_preference');
+  if (!dietarySelect) return;
+
+  const options = content.rsvp?.labels?.dietaryOptions;
+  if (Array.isArray(options) && options.length > 0) {
+    const currentVal = dietarySelect.value;
+    dietarySelect.innerHTML = options.map(opt =>
+      `<option value="${escapeHtml(opt.value)}" ${currentVal === opt.value ? 'selected' : ''}>${escapeHtml(opt.label)}</option>`
+    ).join('');
+  }
 }
 
 /**
@@ -214,7 +303,7 @@ function hydrateBusStopOptions(content) {
   }
 
   if (Array.isArray(options) && options.length > 0) {
-    const defaultPlaceholder = content.rsvp?.labels?.busStopPlaceholder || '-- Choose your departure location --';
+    const defaultPlaceholder = content.rsvp?.labels?.busStopPlaceholder || '-- Selecciona una de las opciones --';
     busStopSelect.innerHTML = `<option value="" disabled ${!currentVal ? 'selected' : ''}>${escapeHtml(defaultPlaceholder)}</option>` +
       options.map(opt => `<option value="${escapeHtml(opt.value)}" ${currentVal === opt.value ? 'selected' : ''}>${escapeHtml(opt.label)}</option>`).join('');
   }
@@ -267,9 +356,32 @@ function initCopyIban(giftsConfig = {}) {
 }
 
 function setText(id, text) {
-  if (!text) return;
+  if (text === undefined || text === null || text === '') return;
   const el = document.getElementById(id);
   if (el) el.textContent = text;
+}
+
+function setAttr(id, attr, value) {
+  if (value === undefined || value === null || value === '') return;
+  const el = document.getElementById(id);
+  if (el) el.setAttribute(attr, value);
+}
+
+function setMeta(selector, value) {
+  if (!value) return;
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute('content', value);
+}
+
+function setLabel(id, text, isRequired = false) {
+  if (!text) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (isRequired || el.querySelector('.req')) {
+    el.innerHTML = `${escapeHtml(text)} <span class="req" aria-hidden="true">*</span>`;
+  } else {
+    el.textContent = text;
+  }
 }
 
 function escapeHtml(str) {
@@ -281,4 +393,3 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
-

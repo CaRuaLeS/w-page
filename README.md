@@ -16,17 +16,20 @@ A high-performance, mobile-first wedding landing page with zero server maintenan
 
 ## 📋 The 5 Core Sections
 
-1. **Hero & Live Countdown** — Couple names, date, venue location, and real-time countdown timer.
-2. **Schedule & Locations** — Timeline cards with one-tap *"Open in Google Maps"* and *"Add to Google Calendar"* action buttons.
-3. **Guest Info (Placeholder Section)** — Modular section (Travel, Accommodations, FAQ, or Our Story) configured via `content.json`.
-4. **Custom RSVP Form** — Clean fields:
-   - Full Name *
+1. **Hero & Live Countdown** — Couple names, date, venue location, real-time countdown timer, and localized unit labels.
+2. **Event Locations & Schedule** — Stacked Ceremony (Church) and Reception (Finca) cards with customizable badges, times, addresses, and 1-tap *"Abrir en Maps"* navigation links.
+3. **Transportation & Shuttle Buses** — Shuttle bus service details, pickup points, outbound and return timetables, and custom logistical notes.
+4. **Reactive RSVP Form** — Fully decoupled form fields with:
+   - First & Last Name *
    - Email *
-   - Dietary Notes Dropdown (`none` [default], `vegan`, `vegetarian`, `no meat`, `carbotarian`)
-   - Allergies (Free-form text input)
-   - Will come? Yes / No *
-   - Send Button (with loading spinner & success toast)
-5. **Gifts & Wishing Well** — Bank transfer details with 1-tap *"Copy IBAN"* button and registry notes.
+   - Attendance Confirmation (Yes / No) *
+   - Conditional Companion / Plus-One toggle with first & last name
+   - Dynamic Dietary Preferences dropdown (configured via JSON array)
+   - Allergies & Medical Restrictions input
+   - Conditional Shuttle Bus selection with route dropdown
+   - Anti-bot honeypot spam protection
+   - "Submit Another RSVP" multi-guest registration reset
+5. **Gifts & Wishing Well** — Bank transfer details (Account Holder, Bank, IBAN, BIC, Concept reference) with 1-tap *"Copy IBAN"* clipboard button.
 
 ---
 
@@ -48,13 +51,18 @@ Then visit `http://localhost:8000` in your browser.
 
 ## ✏️ How to Customize Text & Content
 
-All content is managed in [`content.json`](./content.json). Open the file to edit:
+All content is managed in [`content.json`](./content.json). Every single element updates dynamically without editing HTML or CSS:
 
-- **Couple & Wedding Date:** Update `"couple"` object (e.g. `"targetDateIso": "2026-09-19T17:00:00"` to automatically update the countdown timer).
-- **Schedule Items:** Add or modify events in `"schedule.events"`.
-- **Informational Section:** Edit `"infoPlaceholder"` for travel advice, lodging recommendations, or FAQs.
-- **RSVP Labels & Endpoint:** Set your Google Apps Script Web App URL in `"rsvp.googleAppsScriptUrl"`.
-- **Bank Details:** Update `"gifts.bankDetails"` with your IBAN, BIC, and Account Name.
+- **Metadata & SEO (`"meta"`):** Edit `"title"`, `"description"`, OpenGraph tags, and browser `"themeColor"`.
+- **Couple & Countdown (`"couple"`, `"countdown"`):** Update `"dateDisplay"` or `"dateText"`, `"targetDateIso"` (for the countdown ticker), and timer labels (`"daysLabel"`, `"hoursLabel"`, etc.).
+- **Locations (`"locations"`):** Customize Ceremony (`"church"`) and Reception (`"venue"`) badges, times, venue names, addresses, descriptions, and Google Maps URLs.
+- **Transportation (`"transportation"`):** Configure titles, notes, timetable labels (`"pickupPoint"`, `"outboundHeading"`, `"returnHeading"`), and route departure/return schedules.
+- **RSVP Labels & Options (`"rsvp"`):** 
+  - Set your Google Apps Script endpoint in `"googleAppsScriptUrl"`.
+  - Customize all question labels, placeholders, and confirmation button copy under `"labels"`.
+  - Add or reorder dietary options in `"rsvp.labels.dietaryOptions"`.
+- **Bank & Gifts (`"gifts"`):** Update `"bankDetails"` (Account Holder, Bank Name, IBAN, BIC, and Concept reference).
+- **Footer (`"footer"`):** Update names, date, and closing tagline.
 
 ---
 

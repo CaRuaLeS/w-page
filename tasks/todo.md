@@ -1,36 +1,26 @@
-# Task Breakdown: Mobile-First Wedding Website
+# Task Breakdown: Centralized Content Hydration & Schema Alignment
 
-- [x] Task 1: Establish Design System Tokens & Typography (`theme-tokens`)
-  - Acceptance: `css/variables.css` contains complete tokens for Option 1 typography (*Cormorant Garamond* + *Plus Jakarta Sans*), color palette, spacing scale, and mobile touch target dimensions.
-  - Verify: Load CSS in browser and verify CSS custom properties resolve correctly.
-  - Files: `css/variables.css`
+- [x] Task 1: DOM Hook Preparation & Structural Fixes (`dom-hooks`)
+  - Acceptance: `index.html` contains dedicated semantic IDs for all static labels, section headers, badges, and countdown labels. Inner address text nodes are wrapped in `#church-address-text` and `#venue-address-text` preserving `<svg>` icons. Missing Bank Concept and Transport Note elements are added.
+  - Verify: Inspect `index.html` structure; confirm SVG pin icons remain untouched when text updates.
+  - Files: `index.html`
 
-- [x] Task 2: Build Mobile-First Semantic Skeleton & Layout (`layout-skeleton`)
-  - Acceptance: `index.html` and `css/style.css` render all 5 vertical sections with pre-rendered fallback content matching `content.json`, responsive on all mobile viewports.
-  - Verify: View `index.html` on mobile viewports (375px–430px) to verify zero overflow, proper hierarchy, and accessible tags.
-  - Files: `index.html`, `css/style.css`
-
-- [x] Task 3: Implement Countdown Timer & Calendar Generation (`countdown-calendar`)
-  - Acceptance: `js/countdown.js` ticks in real-time to September 19, 2026. `js/calendar.js` generates both a valid Google Calendar URL and downloads a compliant `.ics` file.
-  - Verify: Test ticker in browser; trigger "Add to Google Calendar" and test `.ics` file download.
-  - Files: `js/countdown.js`, `js/calendar.js`
-
-- [x] Task 4: Implement Event Locations & Transportation Cards (`locations-transport`)
-  - Acceptance: Locations section displays Church (first) and Reception Finca (second) with scheduled times and working "Open in Maps" CTAs. Transportation section clearly details Route 1 (Plaza de España) and Route 2 (Pozuelo ESIC) with departure and return timetables.
-  - Verify: Inspect cards on mobile viewports and test Maps links.
-  - Files: `index.html`, `css/style.css`
-
-- [x] Task 5: Implement Reactive Conditional RSVP Engine (`rsvp-engine`)
-  - Acceptance: `js/rsvp.js` reactively toggles companion fields on `has_plus_one` and bus fields on `needs_bus` with smooth CSS expansion and accessible ARIA attributes. Validates input, submits POST to Google Apps Script, displays celebration card, and provides "Submit Another RSVP" button that cleanly resets fields for the next entry.
-  - Verify: Test form with/without companion and bus toggles; verify validation errors; verify reset state on "Submit Another RSVP".
-  - Files: `js/rsvp.js`, `index.html`, `css/style.css`
-
-- [x] Task 6: Implement Dynamic Hydration Engine & Clipboard Utility (`content-engine`)
-  - Acceptance: `js/app.js` loads `content.json` via `fetch('./content.json')`, dynamically binds texts, dates, and labels, and activates the 1-tap "Copy IBAN" button with toast feedback.
-  - Verify: Modify a field in `content.json` and verify UI updates dynamically; test IBAN copy.
+- [x] Task 2: Implement Complete Hydration Engine in `app.js` (`hydration-engine`)
+  - Acceptance: `js/app.js` hydrates 100% of fields from `content.json`: meta tags, countdown unit labels, church/venue times and badges, transport notes, gifts concept, and initial button labels.
+  - Verify: Load page and verify that all values in `content.json` reflect in DOM.
   - Files: `js/app.js`
 
-- [x] Task 7: Quality Gate & Mobile Performance Audit (`audit-verification`)
-  - Acceptance: 100/100 Lighthouse on Accessibility and Best Practices, >= 95 on Performance. Zero console errors. Complete compliance with ADR-001 through ADR-004.
-  - Verify: Run syntax and structure checks; verified form payload matches ADR-002 schema.
-  - Files: `index.html`, `css/style.css`, `js/app.js`
+- [x] Task 3: Implement Dynamic RSVP Labels & Select Options (`rsvp-hydration`)
+  - Acceptance: `js/rsvp.js` and `js/app.js` dynamically hydrate all RSVP field labels, placeholders, radio labels, toggle questions, and `<select id="dietary_preference">` options from `content.rsvp.labels`.
+  - Verify: Modify a dietary option or label in `content.json` and verify UI updates dynamically; verify form validation and submission payload remain unchanged.
+  - Files: `js/app.js`, `js/rsvp.js`
+
+- [x] Task 4: Verification Suite & Live DOM Proof (`verification-audit`)
+  - Acceptance: Automated verification confirming every single leaf key in `content.json` updates its respective DOM node when changed. Zero console errors.
+  - Verify: Run browser/DOM audit verification script and verify test passes for all keys.
+  - Files: `scratch/verify-hydration.js` (or test runner)
+
+- [x] Task 5: Documentation Synchronization (`docs-sync`)
+  - Acceptance: `README.md`, `ADR-003`, `docs/intent/wedding_page.md` are updated with the exact `content.json` schema reference and accurate configuration instructions.
+  - Verify: Review documentation files for consistency with `content.json` and current codebase.
+  - Files: `README.md`, `docs/decisions/ADR-003-content-json-decoupling.md`, `docs/intent/wedding_page.md`

@@ -25,21 +25,23 @@ A high-performance, mobile-first wedding landing page with a bespoke design, dri
 
 ## 5 Core Sections & Features
 1. **Hero & Live Countdown**
-   - Names, date, location, and real-time live countdown timer calculated from `content.json`.
-2. **Schedule & Locations**
-   - Timeline cards with one-tap "Open in Google Maps" and "Add to Google Calendar" buttons.
-3. **Custom Information / Placeholder Section**
-   - Modular section (e.g. Travel & Accommodations, FAQ, or Our Story) configured via `content.json`.
+   - Names, date, location, and real-time live countdown timer with customizable unit labels.
+2. **Event Locations & Schedule**
+   - Ceremony (Church) and Reception (Finca) cards with customizable badges, scheduled times, addresses, and one-tap "Abrir en Maps" buttons.
+3. **Transportation & Shuttle Buses**
+   - Logistical notes, pickup points, and outbound / return shuttle bus timetables configured dynamically via `content.json`.
 4. **Custom RSVP Form & Multi-Guest Reset**
-   - **Full Name \*** (Required)
+   - **First Name \*** & **Last Name \*** (Required)
    - **Email \*** (Required)
-   - **Dietary Notes** (Dropdown: `none` [default], `vegan`, `vegetarian`, `no meat`, `carbotarian`)
+   - **Attending Confirmation \*** (Required: `Yes` / `No`)
+   - **Companion / Plus-One Toggle** with First & Last Name fields
+   - **Dietary Preferences** (Dynamic dropdown configured via `content.rsvp.labels.dietaryOptions`)
    - **Allergies** (Text input for specific food allergies or medical considerations)
-   - **Will come? \*** (Required toggle: `Yes` / `No`)
-   - **Send Button** with loading spinner and success confirmation feedback.
+   - **Shuttle Bus Toggle** with departure stop selection and special needs notes
+   - **Confirm Button** with loading spinner and celebration feedback.
    - **Auto-Clear Flow:** After submission, all fields automatically reset and a "Submit Another RSVP" button allows guests to easily register another family member/partner.
 5. **Gifts & Bank Details**
-   - Registry note and bank transfer details with a 1-tap "Copy IBAN" button.
+   - Registry note and complete bank transfer details (Account Holder, Bank, IBAN, BIC, and Concept reference) with a 1-tap "Copy IBAN" button.
 
 ## Architecture
 - **Frontend:** Vanilla HTML5 + CSS (Design System Tokens) + Vanilla JS (JSON dynamic renderer & form handler).

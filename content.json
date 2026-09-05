@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Lourdes & Carlos — We're Getting Married!",
+    "title": "Lourdes & Carlos — Nos casamos!",
     "description": "Join us on our special day. Find event details, schedule, location, bus timetables, and RSVP online.",
     "ogTitle": "Lourdes & Carlos' Wedding",
     "ogDescription": "Celebrate with us on Saturday, February 20, 2027",
@@ -15,15 +15,15 @@
     "locationCity": "Madrid, Spain"
   },
   "hero": {
-    "tagline": "Together with our families",
+    "tagline": "Junto a nuestras familais",
     "heading": "Lourdes & Carlos",
-    "subheading": "We're Getting Married",
+    "subheading": "Nos casamos",
     "welcomeMessage": "We cannot wait to celebrate this special day surrounded by our favorite people.",
-    "rsvpButtonText": "RSVP Now",
-    "detailsButtonText": "View Details"
+    "rsvpButtonText": "RSVP",
+    "detailsButtonText": "Detalles"
   },
   "countdown": {
-    "title": "Save the Date",
+    "title": "Guarda la fecha",
     "dateText": "February 20, 2027",
     "timeText": "13:00 CET",
     "daysLabel": "Days",
@@ -31,50 +31,55 @@
     "minutesLabel": "Minutes",
     "secondsLabel": "Seconds",
     "calendarEvent": {
-      "title": "Lourdes & Carlos Wedding",
-      "description": "Wedding celebration of Lourdes and Carlos. Ceremony at Iglesia de Santa Bárbara followed by reception at Finca Las Jarillas.",
+      "title": "Boda Lourdes & Carlos",
+      "description": "Celebración de la boda de Lourdes y Carlos. Ceremonia en la Parroquia de los Santos Apóstoles seguida por recepción en la Finca el Albero:<ul><li><a href=\"https://maps.app.goo.gl/dGvdU3Cgr3o1YvUA8\">Parroquia de los Santos Apóstoles</a></li><li><a href=\"https://maps.app.goo.gl/JSVkuNv7P5tf4M8K6\">Finca el Albero</a></li></ul>",
       "location": "Madrid, Spain",
-      "startIso": "20270220T120000Z",
+      "startIso": "20270220T110000Z",
       "endIso": "20270221T000000Z"
     }
   },
   "locations": {
-    "title": "Event Locations",
+    "title": "Ubicación & Horario",
     "subtitle": "Join us for our ceremony and reception",
     "church": {
-      "badge": "Ceremony",
-      "name": "Iglesia de Santa Bárbara",
-      "time": "17:00",
-      "address": "Calle del General Castaños 2, 28004 Madrid",
+      "badge": "Ceremonia",
+      "name": "Parroquia de los Santos Apóstoles",
+      "time": "12:00",
+      "address": "C. Valle de Ordesa, 28669 Boadilla del Monte, Madrid",
       "description": "Please arrive 15 minutes before the ceremony begins to be comfortably seated.",
-      "mapsUrl": "https://maps.google.com/?q=Parroquia+Santa+Barbara+Madrid"
+      "mapsUrl": "https://maps.app.goo.gl/dGvdU3Cgr3o1YvUA8"
     },
     "venue": {
-      "badge": "Reception",
-      "name": "Finca Las Jarillas",
-      "time": "19:00",
-      "address": "Carretera M-607, Km 19.8, 28049 Madrid",
+      "badge": "Recepción",
+      "name": "Finca El Albero",
+      "time": "14:00",
+      "address": "Carretera M-503, Km 23, 28210, Madrid",
       "description": "Cocktails, dinner, and dancing under the stars following the ceremony.",
-      "mapsUrl": "https://maps.google.com/?q=Finca+Las+Jarillas+Madrid"
+      "mapsUrl": "https://maps.app.goo.gl/JSVkuNv7P5tf4M8K6"
     }
   },
   "transportation": {
-    "title": "Transportation & Shuttle Buses",
-    "subtitle": "Complimentary round-trip shuttle buses for all guests",
-    "note": "Please indicate on your RSVP if you will be using the shuttle service so we can reserve your seat.",
+    "title": "Autobuses",
+    "subtitle": "Por favor, indique en su RSVP si utilizará el servicio de autobús para que podamos reservar su asiento.",
+    "note": " ",
+    "labels": {
+      "pickupPoint": "Punto de recogida:",
+      "outboundHeading": "Ida a la celebración",
+      "returnHeading": "Viajes de vuelta"
+    },
     "routes": [
       {
         "id": "route-1",
         "name": "Plaza de España",
         "badge": "Madrid",
-        "departurePoint": "Plaza de España (Near Hotel Riu / Edificio España)",
+        "departurePoint": "Plaza de España (Cerca del Hotel Riu / Edificio España)",
         "outboundSchedule": [
-          { "time": "16:15", "destination": "Direct to Church" },
-          { "time": "18:15", "destination": "Direct to Finca from Church" }
+          { "time": "11:30", "destination": "Directo a la Iglesia" },
+          { "time": "13:30", "destination": "Directo a la Finca desde la Iglesia" }
         ],
         "returnSchedule": [
-          { "time": "02:00", "description": "First return bus to Plaza de España" },
-          { "time": "04:30", "description": "Final return bus to Plaza de España" }
+          { "time": "23:00", "description": "Primer bus Plaza de España" },
+          { "time": "00:30", "description": "Último bus Plaza de España" }
         ]
       },
       {
@@ -83,12 +88,12 @@
         "badge": "Pozuelo",
         "departurePoint": "Avenida de Valdenigriales (Opposite ESIC University Campus)",
         "outboundSchedule": [
-          { "time": "16:00", "destination": "Direct to Church" },
-          { "time": "18:15", "destination": "Direct to Finca from Church" }
+          { "time": "11:45", "destination": "Directo a la Iglesia" },
+          { "time": "13:30", "destination": "Directo a la Finca desde la Iglesia" }
         ],
         "returnSchedule": [
-          { "time": "02:00", "description": "First return bus to Pozuelo (ESIC)" },
-          { "time": "04:30", "description": "Final return bus to Pozuelo (ESIC)" }
+          { "time": "23:00", "description": "Primer bus Pozuelo (ESIC)" },
+          { "time": "00:30", "description": "Último bus Pozuelo (ESIC)" }
         ]
       }
     ]
@@ -96,66 +101,66 @@
   "rsvp": {
     "title": "RSVP",
     "subtitle": "Kindly respond before August 15, 2026",
-    "description": "Please let us know if you will be joining us. Submit one response per main guest or couple.",
+    "description": "Porfavor haznos saber si vendrás. Rellena una respuesta por invitado o pareja.",
     "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxA5qOwJLJgde3sbPAQy3d_gVtU9ytG0T-i2bcZPk7XLSh3laBLeUhp_fLKMC0Y7IItag/exec",
-    "successHeading": "Thank You!",
-    "successMessage": "Your RSVP has been successfully recorded. We cannot wait to celebrate with you!",
-    "successDeclineMessage": "Thank you for letting us know. We will miss you dearly on our special day!",
+    "successHeading": "Gracias!",
+    "successMessage": "Su RSVP ha sido registrado con éxito. ¡No podemos esperar para celebrar con usted!",
+    "successDeclineMessage": "Gracias por hacernoslo saber. ¡Sentiremos tu falta en nuestro día especial!",
     "labels": {
-      "firstName": "First Name",
+      "firstName": "Nombre",
       "firstNamePlaceholder": "e.g. Maria",
-      "lastName": "Last Name",
+      "lastName": "Apellidos",
       "lastNamePlaceholder": "e.g. Garcia",
-      "email": "Email Address",
+      "email": "Dirección de Email",
       "emailPlaceholder": "e.g. maria.garcia@example.com",
-      "attendingQuestion": "Will you be attending?",
-      "attendingYes": "Yes, I will attend with pleasure",
-      "attendingNo": "No, I regretfully decline",
-      "hasPlusOneQuestion": "Will you be bringing a companion / plus one?",
-      "plusOneFirstName": "Companion's First Name",
-      "plusOneFirstNamePlaceholder": "e.g. Carlos",
-      "plusOneLastName": "Companion's Last Name",
-      "plusOneLastNamePlaceholder": "e.g. Sanchez",
-      "dietaryPreference": "Dietary Preferences",
+      "attendingQuestion": "¿Vendrás?",
+      "attendingYes": "Sí, asistiré con gusto",
+      "attendingNo": "No, lamento decline",
+      "hasPlusOneQuestion": "¿Traerás a un acompañante / plus one?",
+      "plusOneFirstName": "Nombre del acompañante",
+      "plusOneFirstNamePlaceholder": "e.g. Marcos",
+      "plusOneLastName": "Apellidos del acompañante",
+      "plusOneLastNamePlaceholder": "e.g. Llorente",
+      "dietaryPreference": "Preferencias dietéticas",
       "dietaryOptions": [
-        { "value": "none", "label": "None (Standard Menu)" },
-        { "value": "vegetarian", "label": "Vegetarian" },
-        { "value": "gluten_free", "label": "Gluten-Free / Celiac" }
+        { "value": "none", "label": "Ninguna (Menú Estándar)" },
+        { "value": "vegetarian", "label": "Vegetariano" },
+        { "value": "gluten_free", "label": "Sin Gluten / Celiaco" }
       ],
-      "allergies": "Allergies & Medical Restrictions",
-      "allergiesPlaceholder": "e.g. Peanuts, lactose, shellfish, or none",
-      "needsBusQuestion": "Do you need round-trip shuttle bus transportation?",
-      "needsBusYes": "Yes, reserve bus seats",
-      "needsBusNo": "No, traveling by private car",
-      "busStopLabel": "Select Your Bus Stop",
+      "allergies": "Alergias & Restricciones Médicas",
+      "allergiesPlaceholder": "e.g. Maní, lactosa, mariscos, o ninguna",
+      "needsBusYes": "Sí, reserva asientos en el autobús",
+      "needsBusNo": "No, viajo en coche privado",
+      "busStopLabel": "Selecciona tu parada de autobús",
       "busStopOptions": [
-        { "value": "plaza_espana", "label": "Route 1: Plaza de España (Madrid Centro)" },
-        { "value": "pozuelo_esic", "label": "Route 2: Pozuelo (ESIC University Campus)" }
+        { "value": "plaza_espana", "label": "Plaza de España (Madrid Centro)" },
+        { "value": "pozuelo_esic", "label": "Pozuelo (ESIC University Campus)" }
       ],
-      "busNotes": "Bus Comments or Special Needs",
-      "busNotesPlaceholder": "e.g. Traveling with baby stroller, only taking the return bus, etc.",
-      "submitButton": "Confirm RSVP",
-      "submittingButton": "Sending Confirmation...",
-      "submitAnotherButton": "Submit Another RSVP"
+      "busNotes": "Autobús / Notas de transporte",
+      "busNotesPlaceholder": "e.g. Solo ida en autobús, Solo regreso en autobús, etc.",
+      "busStopPlaceholder": "-- Selecciona una de las opciones --",
+      "submitButton": "Enviar RSVP",
+      "submittingButton": "Enviando...",
+      "submitAnotherButton": "Enviar otro RSVP"
     }
   },
   "gifts": {
-    "title": "Gifts & Wishing Well",
-    "subtitle": "Your presence is our greatest present",
-    "message": "Having you with us on our wedding day is all that we could ask for. If you wish to bless us with a gift toward our honeymoon or new beginnings, our details are below.",
+    "title": "Regalos & Lista de Bodas",
+    "subtitle": "Tu presencia es nuestro mayor regalo",
+    "message": "Tenerte con nosotros en nuestro día de boda es todo lo que podríamos pedir. Si deseas bendecirnos con un regalo hacia nuestra luna de miel o nuevos comienzos, nuestros datos están a continuación.",
     "bankDetails": {
       "accountHolder": "Lourdes B & Carlos R",
       "bankName": "Santander International",
       "iban": "ES91 0049 1500 0512 3456 7890",
       "bic": "BSCHESMMXXX",
-      "concept": "Wedding Gift - [Your Name]"
+      "concept": "Regalo de Boda - [Tu Nombre]"
     },
-    "copyIbanButtonText": "Copy IBAN",
+    "copyIbanButtonText": "Copiar IBAN",
     "copiedText": "IBAN Copied to Clipboard!"
   },
   "footer": {
     "signature": "Lourdes & Carlos",
-    "date": "February 20, 2027",
-    "tagline": "With love, Lourdes & Carlos"
+    "date": "20 de Febrero de 2027",
+    "tagline": "Con cariño, Lourdes & Carlos"
   }
 }
