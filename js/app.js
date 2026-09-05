@@ -66,6 +66,8 @@ function hydrateContent(content) {
   setText('hero-message', content.hero?.welcomeMessage);
   setText('hero-rsvp-btn', content.hero?.rsvpButtonText);
   setText('hero-details-btn', content.hero?.detailsButtonText);
+  setAttr('hero-portrait-img', 'src', content.hero?.imageSrc);
+  setAttr('hero-portrait-img', 'alt', content.hero?.imageAlt);
 
   // 3. Countdown & Date Section
   setText('countdown-title', content.countdown?.title);

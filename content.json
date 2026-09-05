@@ -15,12 +15,14 @@
     "locationCity": "Madrid, Spain"
   },
   "hero": {
-    "tagline": "Junto a nuestras familais",
+    "tagline": "Junto a nuestras familias",
     "heading": "Lourdes & Carlos",
     "subheading": "Nos casamos",
     "welcomeMessage": "We cannot wait to celebrate this special day surrounded by our favorite people.",
     "rsvpButtonText": "RSVP",
-    "detailsButtonText": "Detalles"
+    "detailsButtonText": "Detalles",
+    "imageSrc": "images/hero-portrait.jpg",
+    "imageAlt": "Ilustración en acuarela de Lourdes y Carlos"
   },
   "countdown": {
     "title": "Guarda la fecha",

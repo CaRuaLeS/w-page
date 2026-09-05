@@ -94,22 +94,22 @@ export function initRsvp(config = {}) {
 
     // Client-side validation
     if (!firstName || !lastName) {
-      showError('Please enter your first and last name.');
+      showError('Porfavor ingresa tu nombre y apellido.');
       return;
     }
 
     if (!isValidEmail(email)) {
-      showError('Please enter a valid email address.');
+      showError('Porfavor ingresa un correo electrónico válido.');
       return;
     }
 
     if (hasPlusOne && (!plusOneFirst || !plusOneLast)) {
-      showError("Please enter your companion's first and last name.");
+      showError("Porfavor ingresa el nombre y apellidos de tu acompañante.");
       return;
     }
 
     if (needsBus && !busStop) {
-      showError('Please select your shuttle bus stop location.');
+      showError('Porfavor selecciona la ubicación de tu parada de autobús.');
       return;
     }
 
