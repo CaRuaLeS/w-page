@@ -10,24 +10,24 @@
     "partner1": "Lourdes",
     "partner2": "Carlos",
     "monogram": "L & C",
-    "dateDisplay": "Sábado, 20 de Febrero de 2027",
-    "targetDateIso": "2027-02-20T13:00:00+02:00",
-    "locationCity": "Madrid, Spain"
+    "dateDisplay": "Sábado, 20 de febrero de 2027",
+    "targetDateIso": "2027-02-20T12:30:00+02:00",
+    "locationCity": "Madrid, España"
   },
   "hero": {
-    "tagline": "Junto a nuestras familias",
-    "heading": "Lourdes & Carlos",
-    "subheading": "Nos casamos",
-    "welcomeMessage": "We cannot wait to celebrate this special day surrounded by our favorite people.",
-    "rsvpButtonText": "RSVP",
+    "tagline": "",
+    "heading": "Lourdes y Carlos",
+    "subheading": "¡Te invitamos a nuestra boda!",
+    "welcomeMessage": "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más queremos los hace inolvidables.",
+    "rsvpButtonText": "SRC",
     "detailsButtonText": "Detalles",
     "imageSrc": "images/hero-portrait.jpg",
-    "imageAlt": "Ilustración en acuarela de Lourdes y Carlos"
+    "imageAlt": "Ilustración de Lourdes y Carlos"
   },
   "countdown": {
     "title": "Guarda la fecha",
-    "dateText": "February 20, 2027",
-    "timeText": "13:00 CET",
+    "dateText": "Sábado, 20 de Febrero de 2027",
+    "timeText": "12:30",
     "daysLabel": "Days",
     "hoursLabel": "Hours",
     "minutesLabel": "Minutes",
@@ -35,134 +35,128 @@
     "calendarEvent": {
       "title": "Boda Lourdes & Carlos",
       "description": "Celebración de la boda de Lourdes y Carlos. Ceremonia en la Parroquia de los Santos Apóstoles seguida por recepción en la Finca el Albero:<ul><li><a href=\"https://maps.app.goo.gl/dGvdU3Cgr3o1YvUA8\">Parroquia de los Santos Apóstoles</a></li><li><a href=\"https://maps.app.goo.gl/JSVkuNv7P5tf4M8K6\">Finca el Albero</a></li></ul>",
-      "location": "Madrid, Spain",
+      "location": "Madrid, España",
       "startIso": "20270220T110000Z",
       "endIso": "20270221T000000Z"
     }
   },
   "locations": {
-    "title": "Ubicación & Horario",
-    "subtitle": "Join us for our ceremony and reception",
+    "title": "Ubicación y horario",
+    "subtitle": " ",
     "church": {
       "badge": "Ceremonia",
       "name": "Parroquia de los Santos Apóstoles",
-      "time": "12:00",
+      "time": "12:30",
       "address": "C. Valle de Ordesa, 28669 Boadilla del Monte, Madrid",
-      "description": "Please arrive 15 minutes before the ceremony begins to be comfortably seated.",
+      "description": "Por favor, os pedimos llegar 15 minutos antes del inicio para que podáis entrar tranquilamente antes de que empiece la ceremonia.",
       "mapsUrl": "https://maps.app.goo.gl/dGvdU3Cgr3o1YvUA8"
     },
     "venue": {
-      "badge": "Recepción",
+      "badge": "Celebración",
       "name": "Finca El Albero",
-      "time": "14:00",
+      "time": "14:30",
       "address": "Carretera M-503, Km 23, 28210, Madrid",
-      "description": "Cocktails, dinner, and dancing under the stars following the ceremony.",
+      "description": "Cóctel, comida, baile y... ¡a disfrutar!",
       "mapsUrl": "https://maps.app.goo.gl/JSVkuNv7P5tf4M8K6"
     }
   },
   "transportation": {
     "title": "Autobuses",
-    "subtitle": "Por favor, indique en su RSVP si utilizará el servicio de autobús para que podamos reservar su asiento.",
+    "subtitle": "Habrá servicio de autobuses de la Iglesia a la finca, y por la noche, de vuelta a Madrid y Pozuelo. Las paradas y las horas marcadas a continuación son orientativas, confirmaremos más adelante.",
     "note": " ",
     "labels": {
-      "pickupPoint": "Punto de recogida:",
-      "outboundHeading": "Ida a la celebración",
+      "pickupPoint": " ",
+      "outboundHeading": "Ida a la finca",
       "returnHeading": "Viajes de vuelta"
     },
     "routes": [
       {
         "id": "route-1",
-        "name": "Plaza de España",
-        "badge": "Madrid",
-        "departurePoint": "Plaza de España (Cerca del Hotel Riu / Edificio España)",
+        "name": " ",
+        "badge": " ",
+        "departurePoint": " ",
         "outboundSchedule": [
-          { "time": "11:30", "destination": "Directo a la Iglesia" },
-          { "time": "13:30", "destination": "Directo a la Finca desde la Iglesia" }
+          { "time": " ", "destination": "Directo a la finca desde la Iglesia" }
         ],
         "returnSchedule": [
-          { "time": "23:00", "description": "Primer bus Plaza de España" },
-          { "time": "00:30", "description": "Último bus Plaza de España" }
-        ]
-      },
-      {
-        "id": "route-2",
-        "name": "ESIC",
-        "badge": "Pozuelo",
-        "departurePoint": "Avenida de Valdenigriales (Opposite ESIC University Campus)",
-        "outboundSchedule": [
-          { "time": "11:45", "destination": "Directo a la Iglesia" },
-          { "time": "13:30", "destination": "Directo a la Finca desde la Iglesia" }
-        ],
-        "returnSchedule": [
-          { "time": "23:00", "description": "Primer bus Pozuelo (ESIC)" },
-          { "time": "00:30", "description": "Último bus Pozuelo (ESIC)" }
+          { "time": "22:30", "destination": "Primer bus a Plaza de Castilla" },
+          { "time": "22:30", "destination": "Primer bus a  ESIC" },
+          { "time": "01:00", "description": "Último bus a Plaza de Castilla" },
+          { "time": "01:00", "description": "Último bus a ESIC" }
         ]
       }
     ]
   },
   "rsvp": {
-    "title": "RSVP",
-    "subtitle": "Kindly respond before August 15, 2026",
-    "description": "Porfavor haznos saber si vendrás. Rellena una respuesta por invitado o pareja.",
+    "title": "Asistencia",
+    "subtitle": "Por favor, confirma tu asistencia rellenando el siguiente formulario.",
+    "description": "",
     "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxA5qOwJLJgde3sbPAQy3d_gVtU9ytG0T-i2bcZPk7XLSh3laBLeUhp_fLKMC0Y7IItag/exec",
     "successHeading": "Gracias!",
     "successMessage": "Su RSVP ha sido registrado con éxito. ¡No podemos esperar para celebrar con usted!",
     "successDeclineMessage": "Gracias por hacernoslo saber. ¡Sentiremos tu falta en nuestro día especial!",
     "labels": {
       "firstName": "Nombre",
-      "firstNamePlaceholder": "e.g. Maria",
+      "firstNamePlaceholder": "ej: Marcos",
       "lastName": "Apellidos",
-      "lastNamePlaceholder": "e.g. Garcia",
+      "lastNamePlaceholder": "ej: Llorente",
       "email": "Dirección de Email",
-      "emailPlaceholder": "e.g. maria.garcia@example.com",
-      "attendingQuestion": "¿Vendrás?",
-      "attendingYes": "Sí, asistiré con gusto",
-      "attendingNo": "No, lamento decline",
-      "hasPlusOneQuestion": "¿Traerás a un acompañante / plus one?",
+      "emailPlaceholder": "ej: marcos.llorente@gmail.com",
+      "attendingQuestion": "¿Contamos contigo?",
+      "attendingYes": "Sí",
+      "attendingNo": "No",
+      "hasPlusOneQuestion": "¿Traerás acompañante?",
       "plusOneFirstName": "Nombre del acompañante",
-      "plusOneFirstNamePlaceholder": "e.g. Marcos",
+      "plusOneFirstNamePlaceholder": "ej: Fernando",
       "plusOneLastName": "Apellidos del acompañante",
-      "plusOneLastNamePlaceholder": "e.g. Llorente",
+      "plusOneLastNamePlaceholder": "ej: Torres",
       "dietaryPreference": "Preferencias dietéticas",
       "dietaryOptions": [
-        { "value": "none", "label": "Ninguna (Menú Estándar)" },
+        { "value": "none", "label": "Ninguna (menú estándar)" },
         { "value": "vegetarian", "label": "Vegetariano" },
-        { "value": "gluten_free", "label": "Sin Gluten / Celiaco" }
+        { "value": "gluten_free", "label": "Sin gluten / Celiaquía" }
       ],
-      "allergies": "Alergias & Restricciones Médicas",
-      "allergiesPlaceholder": "e.g. Maní, lactosa, mariscos, o ninguna",
+      "allergies": "Intolerancias y alergias alimentarias",
+      "allergiesPlaceholder": "ej: frutos secos, mariscos, lactosa, etc.",
       "needsBusYes": "Sí, reserva asientos en el autobús",
       "needsBusNo": "No, viajo en coche privado",
       "busStopLabel": "Selecciona tu parada de autobús",
       "busStopOptions": [
-        { "value": "plaza_espana", "label": "Plaza de España (Madrid Centro)" },
-        { "value": "pozuelo_esic", "label": "Pozuelo (ESIC University Campus)" }
+        { "value": "iglesia_finca", "label": "Iglesia-Finca" },
+        { "value": "finca_madrid_22.30", "label": "Finca-Plaza de Castilla, 22:30h" },
+        { "value": "finca_pozuelo_22.30", "label": "Finca-ESIC, 22:30h" },
+        { "value": "finca_madrid_01.00", "label": "Finca-Plaza de Castilla, 01:00h" },
+        { "value": "finca_pozuelo_01.00", "label": "Finca-ESIC, 01:00h" }
       ],
       "busNotes": "Autobús / Notas de transporte",
-      "busNotesPlaceholder": "e.g. Solo ida en autobús, Solo regreso en autobús, etc.",
+      "busNotesPlaceholder": "ej: Solo ida en autobús, Solo regreso en autobús, etc.",
       "busStopPlaceholder": "-- Selecciona una de las opciones --",
-      "submitButton": "Enviar RSVP",
+      "shoeSize": "Talla de calzado",
+      "shoeSizeHint": "Si quieres unos zapatos planos para el baile, selecciona tu talla",
+      "shoeSizePlaceholder": "-- No, gracias --",
+      "shoeSizeOptions": ["35", "36", "37", "38", "39", "40", "41", "42", "43"],
+      "submitButton": "Enviar",
       "submittingButton": "Enviando...",
       "submitAnotherButton": "Enviar otro RSVP"
     }
   },
   "gifts": {
-    "title": "Regalos & Lista de Bodas",
-    "subtitle": "Tu presencia es nuestro mayor regalo",
-    "message": "Tenerte con nosotros en nuestro día de boda es todo lo que podríamos pedir. Si deseas bendecirnos con un regalo hacia nuestra luna de miel o nuevos comienzos, nuestros datos están a continuación.",
+    "title": "Nuestra nueva etapa juntos",
+    "subtitle": "Tu compañía en nuestro gran día es lo más importante para nosotros.",
+    "message": "Si además te apetece ayudarnos a dar nuestros primeros pasos, puedes sumar tu detalle aquí:",
     "bankDetails": {
-      "accountHolder": "Lourdes B & Carlos R",
+      "accountHolder": "Lourdes Barreiro",
       "bankName": "Santander International",
-      "iban": "ES91 0049 1500 0512 3456 7890",
+      "iban": "ES91 0000 0000 0000 0000 0000",
       "bic": "BSCHESMMXXX",
-      "concept": "Regalo de Boda - [Tu Nombre]"
+      "concept": "Regalo de Boda - [Nombre Apellido]"
     },
     "copyIbanButtonText": "Copiar IBAN",
     "copiedText": "IBAN Copied to Clipboard!"
   },
   "footer": {
-    "signature": "Lourdes & Carlos",
-    "date": "20 de Febrero de 2027",
+    "signature": "L&C",
+    "date": "20 de febrero de 2027",
     "tagline": "Con cariño, Lourdes & Carlos"
   }
 }

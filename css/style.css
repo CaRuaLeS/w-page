@@ -612,6 +612,12 @@ button, input, select, textarea {
   margin-left: 2px;
 }
 
+.form-hint {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.375rem;
+}
+
 .form-control {
   width: 100%;
   min-height: 48px;

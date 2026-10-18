@@ -65,10 +65,24 @@ This guide walks you through connecting your wedding website's RSVP form directl
 
 ## Google Sheet Output Schema
 
-When guests submit their RSVP, rows are automatically appended with the following 13 columns:
+When guests submit their RSVP, rows are automatically appended with the following 14 columns:
 
-| Col A | Col B | Col C | Col D | Col E | Col F | Col G | Col H | Col I | Col J | Col K | Col L | Col M |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Timestamp** | **First Name** | **Last Name** | **Email** | **Attending** | **Has Plus One** | **Plus One First Name** | **Plus One Last Name** | **Dietary Preference** | **Allergies** | **Needs Bus** | **Bus Stop** | **Bus Notes** |
-| `2026-09-03 18:30` | `Maria` | `Garcia` | `maria@example.com` | `Yes` | `Yes` | `Carlos` | `Sanchez` | `gluten_free` | `Celiac` | `Yes` | `plaza_espana` | `Stroller onboard` |
-| `2026-09-03 19:10` | `David` | `Smith` | `david@example.com` | `No` | `No` | `""` | `""` | `none` | `None` | `No` | `""` | `""` |
+| Col A | Col B | Col C | Col D | Col E | Col F | Col G | Col H | Col I | Col J | Col K | Col L | Col M | Col N |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Timestamp** | **First Name** | **Last Name** | **Email** | **Attending** | **Has Plus One** | **Plus One First Name** | **Plus One Last Name** | **Dietary Preference** | **Allergies** | **Needs Bus** | **Bus Stop** | **Bus Notes** | **Shoe Size** |
+| `2026-09-03 18:30` | `Maria` | `Garcia` | `maria@example.com` | `Yes` | `Yes` | `Carlos` | `Sanchez` | `gluten_free` | `Celiac` | `Yes` | `plaza_espana` | `Stroller onboard` | `38` |
+| `2026-09-03 19:10` | `David` | `Smith` | `david@example.com` | `No` | `No` | `""` | `""` | `none` | `None` | `No` | `""` | `""` | `""` |
+
+---
+
+## 👠 Changing Shoe Sizes Later
+
+The list of accepted sizes is defined in two places that must be kept in sync:
+1. `content.json` → `rsvp.labels.shoeSizeOptions`: controls the frontend dropdown.
+2. `google-apps-script/Code.gs` → `SHOE_SIZES`: controls server-side validation.
+
+**3-step checklist to update sizes:**
+1. Update `shoeSizeOptions` in `content.json`.
+2. Update `SHOE_SIZES` in `Code.gs`.
+3. In Google Apps Script, click **Deploy** > **Manage deployments** > **Edit** > select **New version** > click **Deploy**.
+

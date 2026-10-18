@@ -164,6 +164,10 @@ function hydrateContent(content) {
       setText('label-bus-notes', labels.busNotes);
       setAttr('bus_notes', 'placeholder', labels.busNotesPlaceholder);
 
+      setText('label-shoe-size', labels.shoeSize);
+      setText('shoe-size-hint', labels.shoeSizeHint);
+      hydrateShoeSizeOptions(content);
+
       setText('submit-text', labels.submitButton);
       setText('submit-another-text', labels.submitAnotherButton);
     }
@@ -195,8 +199,7 @@ function hydrateContent(content) {
   if (content.footer) {
     setText('footer-names', content.footer.signature);
     if (content.footer.date) {
-      const city = content.couple?.locationCity ? ` • ${content.couple.locationCity}` : '';
-      setText('footer-date', `${content.footer.date}${city}`);
+      setText('footer-date', `${content.footer.date}`);
     }
     setText('footer-tagline', content.footer.tagline);
   }
@@ -242,14 +245,7 @@ function hydrateTransportation(transportData) {
     return `
       <article class="route-card" id="${escapeHtml(route.id || '')}">
         <div class="card-header-row">
-          <span class="pill-badge route-badge">${escapeHtml(route.name || 'Route')}</span>
-          ${route.badge ? `<span class="pill-time">${escapeHtml(route.badge)}</span>` : ''}
         </div>
-        ${route.departurePoint ? `
-          <div class="route-location">
-            <strong>${escapeHtml(pickupLabel)}</strong> ${escapeHtml(route.departurePoint)}
-          </div>
-        ` : ''}
         ${outboundHtml ? `
           <div class="timetable-block">
             <p class="timetable-heading">${escapeHtml(outboundHeading)}</p>
@@ -309,6 +305,26 @@ function hydrateBusStopOptions(content) {
     busStopSelect.innerHTML = `<option value="" disabled ${!currentVal ? 'selected' : ''}>${escapeHtml(defaultPlaceholder)}</option>` +
       options.map(opt => `<option value="${escapeHtml(opt.value)}" ${currentVal === opt.value ? 'selected' : ''}>${escapeHtml(opt.label)}</option>`).join('');
   }
+}
+
+/**
+ * Dynamically populates shoe size options from content.json
+ */
+function hydrateShoeSizeOptions(content) {
+  const select = document.getElementById('shoe_size');
+  if (!select) return;
+
+  const labels = content.rsvp?.labels || {};
+  const sizes = labels.shoeSizeOptions;
+  if (!Array.isArray(sizes) || sizes.length === 0) return;
+
+  const currentVal = select.value;
+  const placeholder = labels.shoeSizePlaceholder || '-- No, gracias --';
+  select.innerHTML =
+    `<option value="" ${!currentVal ? 'selected' : ''}>${escapeHtml(placeholder)}</option>` +
+    sizes.map(size =>
+      `<option value="${escapeHtml(size)}" ${currentVal === String(size) ? 'selected' : ''}>${escapeHtml(size)}</option>`
+    ).join('');
 }
 
 /**

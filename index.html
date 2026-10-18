@@ -28,7 +28,7 @@
        ======================================================================== -->
   <header class="hero" id="hero">
     <div class="hero-content">
-      <p class="hero-tagline" id="hero-tagline">Junto a nuestras familias</p>
+      <!-- <p class="hero-tagline" id="hero-tagline">Junto a nuestras familias</p> -->
       <h1 class="hero-names" id="hero-names">Lourdes &amp; Carlos</h1>
       <p class="hero-subheading" id="hero-subheading">Nos casamos</p>
 
@@ -65,10 +65,10 @@
          ======================================================================== -->
     <section class="section countdown-section" id="countdown-section">
       <div class="countdown-card">
-        <span class="section-eyebrow" id="countdown-title">Save the Date</span>
+        <!-- <span class="section-eyebrow" id="countdown-title">Save the Date</span> -->
         <div class="date-badge-wrapper">
           <p class="date-badge" id="countdown-date-display">Sábado, 20 de Febrero de 2027</p>
-          <span class="time-badge" id="countdown-time-display">13:00 CET • Madrid, Spain</span>
+          <!-- <span class="time-badge" id="countdown-time-display">12:30 • Madrid, Spain</span> -->
         </div>
 
         <!-- Live Countdown Ticker Grid -->
@@ -100,7 +100,7 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            Add to Calendar
+            Añadir a mi calendario
           </button>
           <div class="calendar-dropdown" id="calendar-dropdown" role="menu">
             <button type="button" class="calendar-option" id="add-to-google-cal" role="menuitem">
@@ -121,7 +121,7 @@
          ======================================================================== -->
     <section class="section locations-section" id="locations">
       <div class="section-header">
-        <span class="section-eyebrow">Cuando &amp; Where</span>
+        <!-- <span class="section-eyebrow">Cuando &amp; Where</span> -->
         <h2 class="section-title" id="locations-title">Ubicación y Horario</h2>
         <p class="section-subtitle" id="locations-subtitle">Join us as we celebrate our ceremony followed by cocktails and dinner</p>
       </div>
@@ -174,7 +174,7 @@
          ======================================================================== -->
     <section class="section transport-section" id="transport">
       <div class="section-header">
-        <span class="section-eyebrow">Guest Logistics</span>
+        <!-- <span class="section-eyebrow">Guest Logistics</span> -->
         <h2 class="section-title" id="transport-title">Transportation &amp; Shuttles</h2>
         <p class="section-subtitle" id="transport-subtitle">
           Complimentary round-trip shuttle buses will be available for all guests. Please reserve your seats in the RSVP form below.
@@ -187,13 +187,7 @@
       <div class="transport-container" id="transport-container">
         <!-- Route 1: Plaza de España -->
         <article class="route-card" id="route-1">
-          <div class="card-header-row">
-            <span class="pill-badge route-badge">Plaza de España</span>
-            <span class="pill-time">Madrid</span>
-          </div>
-          <div class="route-location">
-            <strong>Pickup Point:</strong> Plaza de España (Near Hotel Riu / Edificio España)
-          </div>
+
           <div class="timetable-block">
             <p class="timetable-heading">Outbound to Wedding</p>
             <ul class="timetable-list">
@@ -223,41 +217,6 @@
         </article>
 
         <!-- Route 2: ESIC -->
-        <article class="route-card" id="route-2">
-          <div class="card-header-row">
-            <span class="pill-badge route-badge">ESIC</span>
-            <span class="pill-time">Pozuelo</span>
-          </div>
-          <div class="route-location">
-            <strong>Pickup Point:</strong> Avenida de Valdenigriales (Opposite ESIC Campus)
-          </div>
-          <div class="timetable-block">
-            <p class="timetable-heading">Outbound to Wedding</p>
-            <ul class="timetable-list">
-              <li class="timetable-item">
-                <span class="time-tag">16:00</span>
-                <span class="time-desc">Departure direct to Church</span>
-              </li>
-              <li class="timetable-item">
-                <span class="time-tag">18:15</span>
-                <span class="time-desc">Transfer from Church to Finca Las Jarillas</span>
-              </li>
-            </ul>
-          </div>
-          <div class="timetable-block">
-            <p class="timetable-heading">Return Trips to Pozuelo (ESIC)</p>
-            <ul class="timetable-list">
-              <li class="timetable-item">
-                <span class="time-tag">02:00</span>
-                <span class="time-desc">First return bus</span>
-              </li>
-              <li class="timetable-item">
-                <span class="time-tag">04:30</span>
-                <span class="time-desc">Final return bus</span>
-              </li>
-            </ul>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -266,7 +225,6 @@
          ======================================================================== -->
     <section class="section rsvp-section" id="rsvp">
       <div class="section-header">
-        <span class="section-eyebrow">Confirmar asistencia</span>
         <h2 class="section-title" id="rsvp-title">RSVP</h2>
         <p class="section-subtitle" id="rsvp-subtitle">
           Kindly respond before August 15, 2026. Submit one response per guest or couple.
@@ -362,7 +320,7 @@
           <!-- Needs Bus Toggle -->
           <div class="toggle-card">
             <label for="needs_bus" class="toggle-label">
-              <span class="toggle-title" id="label-needs-bus">¿Necesitas transporte de ida y vuelta en autobús?</span>
+              <span class="toggle-title" id="label-needs-bus">¿Necesitas servicio de autobús?</span>
               <span class="switch">
                 <input type="checkbox" id="needs_bus" name="needs_bus" aria-expanded="false" aria-controls="bus-fields">
                 <span class="slider"></span>
@@ -386,6 +344,24 @@
                 <textarea id="bus_notes" name="bus_notes" class="form-control" placeholder="e.g. Solo ida en autobús, Solo regreso en autobús, etc." maxlength="300"></textarea>
               </div>
             </div>
+          </div>
+
+          <!-- Shoe Size (optional: blank = no shoes wanted) -->
+          <div class="form-group">
+            <label for="shoe_size" class="form-label" id="label-shoe-size">Talla de calzado</label>
+            <p class="form-hint" id="shoe-size-hint">Si quieres unos zapatos cómodos para el baile, selecciona tu talla</p>
+            <select id="shoe_size" name="shoe_size" class="form-control" aria-describedby="shoe-size-hint">
+              <option value="" selected>-- No, gracias --</option>
+              <option value="35">35</option>
+              <option value="36">36</option>
+              <option value="37">37</option>
+              <option value="38">38</option>
+              <option value="39">39</option>
+              <option value="40">40</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+            </select>
           </div>
 
           <!-- Submit Button -->
@@ -417,7 +393,6 @@
          ======================================================================== -->
     <section class="section gifts-section" id="gifts">
       <div class="gifts-card">
-        <span class="section-eyebrow" id="gifts-eyebrow">Wishing Well</span>
         <h2 class="section-title" id="gifts-title">Gifts &amp; Wishing Well</h2>
         <p class="section-subtitle" id="gifts-subtitle">Your presence is our greatest present</p>
         <p class="section-subtitle" id="gifts-message" style="margin-top: 0.5rem; font-size: 0.875rem;">
@@ -461,8 +436,8 @@
        ======================================================================== -->
   <footer class="footer">
     <p class="footer-names" id="footer-names">Lourdes &amp; Carlos</p>
-    <p id="footer-date">February 20, 2027 • Madrid, Spain</p>
-    <p id="footer-tagline" style="margin-top: 0.5rem; font-size: 0.75rem;">With love, Lourdes &amp; Carlos</p>
+    <p id="footer-date">February 20, 2027</p>
+    <!-- <p id="footer-tagline" style="margin-top: 0.5rem; font-size: 0.75rem;">With love, Lourdes &amp; Carlos</p> -->
   </footer>
 
   <!-- Scripts -->

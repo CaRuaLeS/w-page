@@ -15,6 +15,9 @@
  * 4. Click Deploy > Manage deployments > Edit > New version, then click Deploy.
  */
 
+// Keep in sync with content.json -> rsvp.labels.shoeSizeOptions
+var SHOE_SIZES = ["35", "36", "37", "38", "39", "40", "41", "42", "43"];
+
 function setupSheet() {
   var doc = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = doc.getActiveSheet();
@@ -33,7 +36,8 @@ function setupSheet() {
       "Allergies",
       "Needs Bus",
       "Bus Stop",
-      "Bus Notes"
+      "Bus Notes",
+      "Shoe Size"
     ];
     sheet.appendRow(headers);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#EFECE6");
@@ -128,6 +132,9 @@ function doPost(e) {
     var busStop = needsBus === "Yes" ? sanitizeCell(data.bus_stop, 40) : "";
     var busNotes = needsBus === "Yes" ? sanitizeCell(data.bus_notes, 300) : "";
 
+    var shoeSizeRaw = String(data.shoe_size || "").trim();
+    var shoeSize = (attending === "Yes" && SHOE_SIZES.indexOf(shoeSizeRaw) !== -1) ? shoeSizeRaw : "";
+
     // 4. Append sanitized row to private spreadsheet
     sheet.appendRow([
       new Date(),
@@ -142,7 +149,8 @@ function doPost(e) {
       allergies,
       needsBus,
       busStop,
-      busNotes
+      busNotes,
+      shoeSize
     ]);
 
     return ContentService

@@ -90,6 +90,7 @@ export function initRsvp(config = {}) {
     const needsBus = busToggle ? busToggle.checked : false;
     const busStop = busStopSelect?.value || '';
     const busNotes = busNotesTextarea?.value.trim() || '';
+    const shoeSize = form.querySelector('#shoe_size')?.value || '';
     const honeypot = form.querySelector('#honeypot_check')?.value || '';
 
     // Client-side validation
@@ -127,6 +128,7 @@ export function initRsvp(config = {}) {
       needs_bus: needsBus,
       bus_stop: needsBus ? busStop : '',
       bus_notes: needsBus ? busNotes : '',
+      shoe_size: attending ? shoeSize : '',
       honeypot_check: honeypot
     };
 
@@ -201,6 +203,9 @@ export function initRsvp(config = {}) {
 
       const honeypotEl = form.querySelector('#honeypot_check');
       if (honeypotEl) honeypotEl.value = '';
+
+      const shoeSelect = form.querySelector('#shoe_size');
+      if (shoeSelect) shoeSelect.value = '';
 
       // Focus first input for next entry
       form.querySelector('#first_name')?.focus();
