@@ -91,7 +91,7 @@
     "title": "Asistencia",
     "subtitle": "Por favor, confirma tu asistencia rellenando el siguiente formulario.",
     "description": "",
-    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbxA5qOwJLJgde3sbPAQy3d_gVtU9ytG0T-i2bcZPk7XLSh3laBLeUhp_fLKMC0Y7IItag/exec",
+    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycby7t_KXVBvtuv-3m72dtDeQXMqqJBTnPjbrxAqYSGmo3RBra8BqyO0C3RzmBlD2jKhE/exec",
     "successHeading": "Gracias!",
     "successMessage": "Su RSVP ha sido registrado con éxito. ¡No podemos esperar para celebrar con usted!",
     "successDeclineMessage": "Gracias por hacernoslo saber. ¡Sentiremos tu falta en nuestro día especial!",
@@ -118,23 +118,44 @@
       ],
       "allergies": "Intolerancias y alergias alimentarias",
       "allergiesPlaceholder": "ej: frutos secos, mariscos, lactosa, etc.",
-      "needsBusYes": "Sí, reserva asientos en el autobús",
-      "needsBusNo": "No, viajo en coche privado",
-      "busStopLabel": "Selecciona tu parada de autobús",
-      "busStopOptions": [
-        { "value": "iglesia_finca", "label": "Iglesia-Finca" },
-        { "value": "finca_madrid_22.30", "label": "Finca-Plaza de Castilla, 22:30h" },
-        { "value": "finca_pozuelo_22.30", "label": "Finca-ESIC, 22:30h" },
-        { "value": "finca_madrid_01.00", "label": "Finca-Plaza de Castilla, 01:00h" },
-        { "value": "finca_pozuelo_01.00", "label": "Finca-ESIC, 01:00h" }
-      ],
-      "busNotes": "Autobús / Notas de transporte",
-      "busNotesPlaceholder": "ej: Solo ida en autobús, Solo regreso en autobús, etc.",
-      "busStopPlaceholder": "-- Selecciona una de las opciones --",
+      "needsBusQuestion": "¿Necesitas servicio de autobús?",
+      "busSection": {
+        "leg1": {
+          "label": "1. Hacia la Iglesia",
+          "hint": "Salida hacia la ceremonia",
+          "options": {
+            "madrid": "Madrid",
+            "pozuelo": "Pozuelo",
+            "none": "No necesito"
+          }
+        },
+        "leg2": {
+          "label": "2. De la Iglesia a la Finca",
+          "hint": "Traslado a la celebración",
+          "options": {
+            "yes": "Sí, necesito",
+            "no": "No necesito"
+          }
+        },
+        "leg3": {
+          "label": "3. Vuelta tras la fiesta",
+          "hint": "Regreso desde la Finca",
+          "options": {
+            "madrid": "A Madrid",
+            "pozuelo": "A Pozuelo",
+            "none": "No necesito"
+          }
+        },
+        "seatsNoticeSingular": "Tu reserva incluirá 1 plaza en los tramos seleccionados.",
+        "seatsNoticePlural": "Tu reserva incluirá 2 plazas (tú y tu acompañante) en los tramos seleccionados."
+      },
       "shoeSize": "Talla de calzado",
       "shoeSizeHint": "Si quieres unos zapatos planos para el baile, selecciona tu talla",
       "shoeSizePlaceholder": "-- No, gracias --",
       "shoeSizeOptions": ["35", "36", "37", "38", "39", "40", "41", "42", "43"],
+      "commentsLabel": "Comentarios o notas",
+      "commentsHint": "¿Alguna duda, petición o mensaje especial para los novios?",
+      "commentsPlaceholder": "Escribe aquí tu mensaje...",
       "submitButton": "Enviar",
       "submittingButton": "Enviando...",
       "submitAnotherButton": "Enviar otro RSVP"
@@ -153,6 +174,24 @@
     },
     "copyIbanButtonText": "Copiar IBAN",
     "copiedText": "IBAN Copied to Clipboard!"
+  },
+  "contact": {
+    "title": "¿Tienes alguna duda?",
+    "subtitle": "Estamos a tu disposición para lo que necesites",
+    "partner1": {
+      "name": "Lourdes",
+      "phone": "+34 600 000 000",
+      "phoneLink": "tel:+34600000000",
+      "email": "lourdes@example.com",
+      "emailLink": "mailto:lourdes@example.com"
+    },
+    "partner2": {
+      "name": "Carlos",
+      "phone": "+34 600 000 000",
+      "phoneLink": "tel:+34600000000",
+      "email": "carlos@example.com",
+      "emailLink": "mailto:carlos@example.com"
+    }
   },
   "footer": {
     "signature": "L&C",

@@ -158,15 +158,35 @@ function hydrateContent(content) {
       setAttr('allergies', 'placeholder', labels.allergiesPlaceholder);
 
       setText('label-needs-bus', labels.needsBusQuestion);
-      setLabel('label-bus-stop', labels.busStopLabel, true);
-      hydrateBusStopOptions(content);
+      if (labels.busSection) {
+        const bs = labels.busSection;
+        setText('label-bus-leg1', bs.leg1?.label);
+        setText('hint-bus-leg1', bs.leg1?.hint);
+        setText('label-bus-leg1-madrid', bs.leg1?.options?.madrid);
+        setText('label-bus-leg1-pozuelo', bs.leg1?.options?.pozuelo);
+        setText('label-bus-leg1-none', bs.leg1?.options?.none);
 
-      setText('label-bus-notes', labels.busNotes);
-      setAttr('bus_notes', 'placeholder', labels.busNotesPlaceholder);
+        setText('label-bus-leg2', bs.leg2?.label);
+        setText('hint-bus-leg2', bs.leg2?.hint);
+        setText('label-bus-leg2-yes', bs.leg2?.options?.yes);
+        setText('label-bus-leg2-no', bs.leg2?.options?.no);
+
+        setText('label-bus-leg3', bs.leg3?.label);
+        setText('hint-bus-leg3', bs.leg3?.hint);
+        setText('label-bus-leg3-madrid', bs.leg3?.options?.madrid);
+        setText('label-bus-leg3-pozuelo', bs.leg3?.options?.pozuelo);
+        setText('label-bus-leg3-none', bs.leg3?.options?.none);
+
+        setText('bus-seats-notice', bs.seatsNoticeSingular);
+      }
 
       setText('label-shoe-size', labels.shoeSize);
       setText('shoe-size-hint', labels.shoeSizeHint);
       hydrateShoeSizeOptions(content);
+
+      setText('label-comments', labels.commentsLabel);
+      setText('hint-comments', labels.commentsHint);
+      setAttr('comments', 'placeholder', labels.commentsPlaceholder);
 
       setText('submit-text', labels.submitButton);
       setText('submit-another-text', labels.submitAnotherButton);
@@ -195,7 +215,31 @@ function hydrateContent(content) {
     }
   }
 
-  // 8. Footer Section
+  // 8. Couple Contact Section
+  if (content.contact) {
+    setText('contact-title', content.contact.title);
+    setText('contact-subtitle', content.contact.subtitle);
+
+    if (content.contact.partner1) {
+      const p1 = content.contact.partner1;
+      setText('contact-name-1', p1.name);
+      setAttr('contact-phone-1', 'href', p1.phoneLink);
+      setText('contact-phone-text-1', p1.phone);
+      setAttr('contact-email-1', 'href', p1.emailLink);
+      setText('contact-email-text-1', p1.email);
+    }
+
+    if (content.contact.partner2) {
+      const p2 = content.contact.partner2;
+      setText('contact-name-2', p2.name);
+      setAttr('contact-phone-2', 'href', p2.phoneLink);
+      setText('contact-phone-text-2', p2.phone);
+      setAttr('contact-email-2', 'href', p2.emailLink);
+      setText('contact-email-text-2', p2.email);
+    }
+  }
+
+  // 9. Footer Section
   if (content.footer) {
     setText('footer-names', content.footer.signature);
     if (content.footer.date) {

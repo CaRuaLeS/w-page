@@ -65,13 +65,13 @@ This guide walks you through connecting your wedding website's RSVP form directl
 
 ## Google Sheet Output Schema
 
-When guests submit their RSVP, rows are automatically appended with the following 14 columns:
+When guests submit their RSVP, rows are automatically appended with the following 16 columns:
 
-| Col A | Col B | Col C | Col D | Col E | Col F | Col G | Col H | Col I | Col J | Col K | Col L | Col M | Col N |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Timestamp** | **First Name** | **Last Name** | **Email** | **Attending** | **Has Plus One** | **Plus One First Name** | **Plus One Last Name** | **Dietary Preference** | **Allergies** | **Needs Bus** | **Bus Stop** | **Bus Notes** | **Shoe Size** |
-| `2026-09-03 18:30` | `Maria` | `Garcia` | `maria@example.com` | `Yes` | `Yes` | `Carlos` | `Sanchez` | `gluten_free` | `Celiac` | `Yes` | `plaza_espana` | `Stroller onboard` | `38` |
-| `2026-09-03 19:10` | `David` | `Smith` | `david@example.com` | `No` | `No` | `""` | `""` | `none` | `None` | `No` | `""` | `""` | `""` |
+| Col A | Col B | Col C | Col D | Col E | Col F | Col G | Col H | Col I | Col J | Col K | Col L | Col M | Col N | Col O | Col P |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Timestamp** | **First Name** | **Last Name** | **Email** | **Attending** | **Has Plus One** | **Plus One First Name** | **Plus One Last Name** | **Dietary Preference** | **Allergies** | **Needs Bus** | **Bus: Origen -> Iglesia** | **Bus: Iglesia -> Finca** | **Bus: Finca -> Vuelta** | **Shoe Size** | **Comments** |
+| `2026-09-03 18:30` | `Maria` | `Garcia` | `maria@example.com` | `Yes` | `Yes` | `Carlos` | `Sanchez` | `gluten_free` | `Celiac` | `Yes` | `madrid` | `yes` | `pozuelo` | `38` | `¡Qué ganas de celebrarlo!` |
+| `2026-09-03 19:10` | `David` | `Smith` | `david@example.com` | `No` | `No` | `""` | `""` | `none` | `None` | `No` | `""` | `""` | `""` | `""` | `Os deseamos lo mejor` |
 
 ---
 

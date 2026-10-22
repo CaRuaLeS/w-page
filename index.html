@@ -328,21 +328,68 @@
             </label>
           </div>
 
-          <!-- Conditional Fields: Bus Stop & Notes -->
+          <!-- Conditional Fields: 3 Shuttle Bus Legs -->
           <div class="conditional-fields" id="bus-fields" aria-hidden="true">
             <div class="conditional-inner">
-              <div class="form-group">
-                <label for="bus_stop" class="form-label" id="label-bus-stop">Select Your Bus Stop <span class="req" aria-hidden="true">*</span></label>
-                <select id="bus_stop" name="bus_stop" class="form-control">
-                  <option value="" disabled selected>-- Selecciona una de las opciones --</option>
-                  <option value="plaza_espana">Route 1: Plaza de España (Madrid Centro)</option>
-                  <option value="pozuelo_esic">Route 2: Pozuelo (ESIC Campus)</option>
-                </select>
+              <!-- Tramo 1 -->
+              <div class="form-group bus-leg-group">
+                <span class="form-label" id="label-bus-leg1">1. Hacia la Iglesia</span>
+                <p class="form-hint" id="hint-bus-leg1">Salida hacia la ceremonia</p>
+                <div class="radio-pill-group" role="radiogroup" aria-labelledby="label-bus-leg1">
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_to_church" value="madrid">
+                    <span id="label-bus-leg1-madrid">Madrid</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_to_church" value="pozuelo">
+                    <span id="label-bus-leg1-pozuelo">Pozuelo</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_to_church" value="none" checked>
+                    <span id="label-bus-leg1-none">No necesito</span>
+                  </label>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="bus_notes" class="form-label" id="label-bus-notes">Autobús / Notas de transporte</label>
-                <textarea id="bus_notes" name="bus_notes" class="form-control" placeholder="e.g. Solo ida en autobús, Solo regreso en autobús, etc." maxlength="300"></textarea>
+
+              <!-- Tramo 2 -->
+              <div class="form-group bus-leg-group">
+                <span class="form-label" id="label-bus-leg2">2. De la Iglesia a la Finca</span>
+                <p class="form-hint" id="hint-bus-leg2">Traslado a la celebración</p>
+                <div class="radio-pill-group" role="radiogroup" aria-labelledby="label-bus-leg2">
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_church_to_venue" value="yes" checked>
+                    <span id="label-bus-leg2-yes">Sí, necesito</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_church_to_venue" value="no">
+                    <span id="label-bus-leg2-no">No necesito</span>
+                  </label>
+                </div>
               </div>
+
+              <!-- Tramo 3 -->
+              <div class="form-group bus-leg-group">
+                <span class="form-label" id="label-bus-leg3">3. Vuelta tras la fiesta</span>
+                <p class="form-hint" id="hint-bus-leg3">Regreso desde la Finca</p>
+                <div class="radio-pill-group" role="radiogroup" aria-labelledby="label-bus-leg3">
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_return" value="madrid">
+                    <span id="label-bus-leg3-madrid">A Madrid</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_return" value="pozuelo">
+                    <span id="label-bus-leg3-pozuelo">A Pozuelo</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="bus_return" value="none" checked>
+                    <span id="label-bus-leg3-none">No necesito</span>
+                  </label>
+                </div>
+              </div>
+
+              <p class="form-hint bus-seats-notice" id="bus-seats-notice" aria-live="polite">
+                Tu reserva incluirá 1 plaza en los tramos seleccionados.
+              </p>
             </div>
           </div>
 
@@ -362,6 +409,13 @@
               <option value="42">42</option>
               <option value="43">43</option>
             </select>
+          </div>
+
+          <!-- General Comments -->
+          <div class="form-group" id="comments-group">
+            <label for="comments" class="form-label" id="label-comments">Comentarios o notas</label>
+            <p class="form-hint" id="hint-comments">¿Alguna duda, petición o mensaje especial para los novios?</p>
+            <textarea id="comments" name="comments" class="form-control" placeholder="Escribe aquí tu mensaje..." maxlength="500" rows="3" aria-describedby="hint-comments"></textarea>
           </div>
 
           <!-- Submit Button -->
@@ -426,6 +480,44 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           <span id="copy-iban-text">Copiar IBAN</span>
         </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. COUPLE CONTACT SECTION (Borderless)
+         ======================================================================== -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-header">
+        <h2 class="contact-title" id="contact-title">¿Tienes alguna duda?</h2>
+        <p class="contact-subtitle" id="contact-subtitle">Estamos a tu disposición para lo que necesites</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-person contact-left" id="contact-partner1">
+          <h3 class="contact-person-name" id="contact-name-1">Lourdes</h3>
+          <div class="contact-channels">
+            <a href="tel:+34600000000" class="contact-link" id="contact-phone-1">
+              <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span id="contact-phone-text-1">+34 600 000 000</span>
+            </a>
+            <a href="mailto:lourdes@example.com" class="contact-link" id="contact-email-1">
+              <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span id="contact-email-text-1">lourdes@example.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="contact-person contact-right" id="contact-partner2">
+          <h3 class="contact-person-name" id="contact-name-2">Carlos</h3>
+          <div class="contact-channels">
+            <a href="tel:+34600000000" class="contact-link" id="contact-phone-2">
+              <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span id="contact-phone-text-2">+34 600 000 000</span>
+            </a>
+            <a href="mailto:carlos@example.com" class="contact-link" id="contact-email-2">
+              <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span id="contact-email-text-2">carlos@example.com</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

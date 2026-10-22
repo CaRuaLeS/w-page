@@ -15,8 +15,10 @@
  * 4. Click Deploy > Manage deployments > Edit > New version, then click Deploy.
  */
 
-// Keep in sync with content.json -> rsvp.labels.shoeSizeOptions
+// Keep in sync with content.json -> rsvp.labels.shoeSizeOptions & busSection
 var SHOE_SIZES = ["35", "36", "37", "38", "39", "40", "41", "42", "43"];
+var BUS_LEG_1_3_OPTIONS = ["madrid", "pozuelo", "none"];
+var BUS_LEG_2_OPTIONS = ["yes", "no"];
 
 function setupSheet() {
   var doc = SpreadsheetApp.getActiveSpreadsheet();
@@ -35,9 +37,11 @@ function setupSheet() {
       "Dietary Preference",
       "Allergies",
       "Needs Bus",
-      "Bus Stop",
-      "Bus Notes",
-      "Shoe Size"
+      "Bus: Origen -> Iglesia",
+      "Bus: Iglesia -> Finca",
+      "Bus: Finca -> Vuelta",
+      "Shoe Size",
+      "Comments"
     ];
     sheet.appendRow(headers);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#EFECE6");
@@ -128,12 +132,18 @@ function doPost(e) {
     var dietaryPreference = sanitizeCell(data.dietary_preference, 30) || "none";
     var allergies = sanitizeCell(data.allergies, 200);
 
-    var needsBus = (data.needs_bus === true || data.needs_bus === "true" || data.needs_bus === "Yes") ? "Yes" : "No";
-    var busStop = needsBus === "Yes" ? sanitizeCell(data.bus_stop, 40) : "";
-    var busNotes = needsBus === "Yes" ? sanitizeCell(data.bus_notes, 300) : "";
+    var needsBus = (attending === "Yes" && (data.needs_bus === true || data.needs_bus === "true" || data.needs_bus === "Yes")) ? "Yes" : "No";
+    var leg1Raw = String(data.bus_to_church || "").trim().toLowerCase();
+    var leg2Raw = String(data.bus_church_to_venue || "").trim().toLowerCase();
+    var leg3Raw = String(data.bus_return || "").trim().toLowerCase();
+
+    var busToChurch = (needsBus === "Yes" && BUS_LEG_1_3_OPTIONS.indexOf(leg1Raw) !== -1) ? sanitizeCell(leg1Raw, 20) : "";
+    var busChurchToVenue = (needsBus === "Yes" && BUS_LEG_2_OPTIONS.indexOf(leg2Raw) !== -1) ? sanitizeCell(leg2Raw, 10) : "";
+    var busReturn = (needsBus === "Yes" && BUS_LEG_1_3_OPTIONS.indexOf(leg3Raw) !== -1) ? sanitizeCell(leg3Raw, 20) : "";
 
     var shoeSizeRaw = String(data.shoe_size || "").trim();
     var shoeSize = (attending === "Yes" && SHOE_SIZES.indexOf(shoeSizeRaw) !== -1) ? shoeSizeRaw : "";
+    var comments = sanitizeCell(data.comments, 500);
 
     // 4. Append sanitized row to private spreadsheet
     sheet.appendRow([
@@ -148,9 +158,11 @@ function doPost(e) {
       dietaryPreference,
       allergies,
       needsBus,
-      busStop,
-      busNotes,
-      shoeSize
+      busToChurch,
+      busChurchToVenue,
+      busReturn,
+      shoeSize,
+      comments
     ]);
 
     return ContentService

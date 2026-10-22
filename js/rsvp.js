@@ -20,13 +20,31 @@ export function initRsvp(config = {}) {
 
   const busToggle = document.getElementById('needs_bus');
   const busFields = document.getElementById('bus-fields');
-  const busStopSelect = document.getElementById('bus_stop');
-  const busNotesTextarea = document.getElementById('bus_notes');
+  const busSeatsNotice = document.getElementById('bus-seats-notice');
+  const commentsTextarea = document.getElementById('comments');
 
   const successHeading = document.getElementById('success-heading');
   const successMessage = document.getElementById('success-message');
 
   if (!form) return;
+
+  function updateBusSeatsNotice() {
+    if (!busSeatsNotice) return;
+    const isPlusOne = plusOneToggle ? plusOneToggle.checked : false;
+    const bs = config.labels?.busSection || {};
+    const singular = bs.seatsNoticeSingular || 'Tu reserva incluirá 1 plaza en los tramos seleccionados.';
+    const plural = bs.seatsNoticePlural || 'Tu reserva incluirá 2 plazas (tú y tu acompañante) en los tramos seleccionados.';
+    busSeatsNotice.textContent = isPlusOne ? plural : singular;
+  }
+
+  function resetBusLegDefaults() {
+    const leg1Default = form.querySelector('input[name="bus_to_church"][value="none"]');
+    const leg2Default = form.querySelector('input[name="bus_church_to_venue"][value="yes"]');
+    const leg3Default = form.querySelector('input[name="bus_return"][value="none"]');
+    if (leg1Default) leg1Default.checked = true;
+    if (leg2Default) leg2Default.checked = true;
+    if (leg3Default) leg3Default.checked = true;
+  }
 
   // 1. Reactive Toggling: Companion Fields
   if (plusOneToggle && companionFields) {
@@ -46,6 +64,8 @@ export function initRsvp(config = {}) {
         if (plusOneFirstInput) plusOneFirstInput.value = '';
         if (plusOneLastInput) plusOneLastInput.value = '';
       }
+
+      updateBusSeatsNotice();
     });
   }
 
@@ -57,13 +77,8 @@ export function initRsvp(config = {}) {
       busFields.setAttribute('aria-hidden', String(!isChecked));
       busFields.classList.toggle('open', isChecked);
 
-      if (isChecked) {
-        busStopSelect?.setAttribute('required', '');
-        busStopSelect?.focus();
-      } else {
-        busStopSelect?.removeAttribute('required');
-        if (busStopSelect) busStopSelect.value = '';
-        if (busNotesTextarea) busNotesTextarea.value = '';
+      if (!isChecked) {
+        resetBusLegDefaults();
       }
     });
   }
@@ -87,10 +102,18 @@ export function initRsvp(config = {}) {
     const dietaryPref = form.querySelector('#dietary_preference')?.value || 'none';
     const allergies = form.querySelector('#allergies')?.value.trim() || '';
 
-    const needsBus = busToggle ? busToggle.checked : false;
-    const busStop = busStopSelect?.value || '';
-    const busNotes = busNotesTextarea?.value.trim() || '';
+    const needsBus = attending && busToggle ? busToggle.checked : false;
+    const busToChurch = needsBus
+      ? (form.querySelector('input[name="bus_to_church"]:checked')?.value || 'none')
+      : '';
+    const busChurchToVenue = needsBus
+      ? (form.querySelector('input[name="bus_church_to_venue"]:checked')?.value || 'no')
+      : '';
+    const busReturn = needsBus
+      ? (form.querySelector('input[name="bus_return"]:checked')?.value || 'none')
+      : '';
     const shoeSize = form.querySelector('#shoe_size')?.value || '';
+    const comments = commentsTextarea?.value.trim() || '';
     const honeypot = form.querySelector('#honeypot_check')?.value || '';
 
     // Client-side validation
@@ -109,11 +132,6 @@ export function initRsvp(config = {}) {
       return;
     }
 
-    if (needsBus && !busStop) {
-      showError('Porfavor selecciona la ubicación de tu parada de autobús.');
-      return;
-    }
-
     // Build payload matching strict schema
     const payload = {
       first_name: firstName,
@@ -126,9 +144,11 @@ export function initRsvp(config = {}) {
       dietary_preference: dietaryPref,
       allergies: allergies,
       needs_bus: needsBus,
-      bus_stop: needsBus ? busStop : '',
-      bus_notes: needsBus ? busNotes : '',
+      bus_to_church: busToChurch,
+      bus_church_to_venue: busChurchToVenue,
+      bus_return: busReturn,
       shoe_size: attending ? shoeSize : '',
+      comments: comments,
       honeypot_check: honeypot
     };
 
@@ -192,7 +212,8 @@ export function initRsvp(config = {}) {
         busFields.classList.remove('open');
         busFields.setAttribute('aria-hidden', 'true');
       }
-      busStopSelect?.removeAttribute('required');
+      resetBusLegDefaults();
+      updateBusSeatsNotice();
 
       // Reset defaults
       const yesRadio = form.querySelector('input[name="attending"][value="true"]');
@@ -206,6 +227,8 @@ export function initRsvp(config = {}) {
 
       const shoeSelect = form.querySelector('#shoe_size');
       if (shoeSelect) shoeSelect.value = '';
+
+      if (commentsTextarea) commentsTextarea.value = '';
 
       // Focus first input for next entry
       form.querySelector('#first_name')?.focus();

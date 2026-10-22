@@ -112,3 +112,79 @@ This plan establishes end-to-end dynamic hydration between `content.json` and `i
 ### Phase 4: Documentation Synchronization
 - Update `README.md` to document the exact, complete `content.json` structure (removing non-existent references like `schedule.events` and `infoPlaceholder`).
 - Update `docs/intent/wedding_page.md` and `docs/decisions/ADR-003-content-json-decoupling.md` to reflect full hydration of badges, times, notes, concept, and form labels.
+
+
+---
+---
+
+# Technical Implementation Plan: RSVP Comfortable Shoe Size (`rsvp-shoe-size`)
+
+> Spec: [SPEC-rsvp-shoe-size.md](../SPEC-rsvp-shoe-size.md) (approved 2026-10-05)
+
+## Overview
+Add one optional `shoe_size` dropdown as the last RSVP field. The size list (35–43) lives in one editable array in `content.json`. `Code.gs` keeps its own copy, checks submitted values against it, and writes them to a new last Sheet column (N, `Shoe Size`).
+
+## Components & Dependencies
+```mermaid
+flowchart LR
+  A["T1 content.json keys"] --> B["T2 HTML + CSS fallback"]
+  B --> C["T3 app.js hydration"]
+  B --> D["T4 rsvp.js payload"]
+  E["T5 Code.gs Sheet script"] --> F["T6 Apps Script redeploy (manual)"]
+  C --> G["T7 Docs + end-to-end check"]
+  D --> G
+  F --> G
+```
+
+## Implementation Order
+1. **T1: Content keys.** Data first, so every later step reads the real values.
+2. **T2: Markup + `.form-hint`.** The static fallback works on its own, even if `content.json` fails to load.
+3. **T3: Fill in the dropdown and copy from `content.json`** and **T4: Payload.** Independent of each other, so they can be done in either order.
+4. **T5: `Code.gs`.** Independent of the frontend and can be done in parallel with T1–T4.
+5. **T6: Redeploy the Apps Script.** Manual, done by the couple in Google. Must happen before the live check.
+6. **T7: Docs + end-to-end check.** ADR-002, Apps Script README, live submission → Sheet.
+
+## Risks & Mitigations
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Apps Script not redeployed | Size never saved, with no error shown | T6 is its own step; T7 checks column N with a live row |
+| `SHOE_SIZES` ≠ `shoeSizeOptions` | Valid choices stored as empty | Sync comment in both places; README rule; criterion 7 tests adding "44" |
+| Column added in the middle | Every column after it would be misaligned | Spec boundary: add the column **last**; T5 checks the header count |
+| Sheet already has rows | Header not written automatically | Check before T6; add the N1 header by hand if needed |
+| `googleAppsScriptUrl` cleared for testing gets committed | Live RSVPs lost | Clear it locally only; check `git diff content.json` before committing |
+| Formula injection through the size | Sheet compromised | Whitelist check before `sanitizeCell` |
+
+## Verification Checkpoints
+- **After T2:** page loads, field is last, fallback options 35–43 are shown.
+- **After T4:** simulated submission payload shows correct `shoe_size` for blank / 38 / 38 + decline.
+- **After T5:** a mock `doPost` in the Apps Script editor writes column N correctly and rejects forged values.
+- **After T7:** a live row in the Sheet and all 14 spec success criteria pass.
+
+
+---
+---
+
+# Technical Implementation Plan: RSVP Shuttle Bus Legs, General Comments & Couple Contact (`SPEC-rsvp-buses-and-contacts`)
+
+> Spec: [SPEC-rsvp-buses-and-contacts.md](../docs/specs/SPEC-rsvp-buses-and-contacts.md) (approved 2026-10-20)
+
+## Overview
+Upgrade the RSVP form and contact layout to provide a mobile-first, accessible, and frictionless experience:
+1. Replace the single bus stop dropdown and bus notes textarea with 3 independent shuttle bus leg radio-pill groups (`bus_to_church`, `bus_church_to_venue`, `bus_return`) and a dynamic `aria-live="polite"` seat count notice (1 vs. 2 seats when companion is toggled).
+2. Add a general `comments` textarea (max 500 chars) at the end of the form before the submit button.
+3. Add a borderless, pure-typography Couple Contact section (`#contact`) after `#gifts` and before `<footer>` with Lourdes on the left and Carlos on the right.
+4. Update `google-apps-script/Code.gs` and documentation for the 16-column Google Sheet schema with whitelist and anti-formula sanitization.
+
+## Architecture Decisions
+- **Vertical Feature Slicing:** After defining the data contract in `content.json` (Task 1), each user-facing capability—Shuttle Bus Legs + Dynamic Seat Notice (Task 2), General Comments (Task 3), and Couple Contact Section (Task 4)—is delivered as an end-to-end vertical slice.
+- **Progressive Enhancement Fallbacks:** `index.html` pre-renders default Spanish copy and default radio selections (`none` for Leg 1 & Leg 3, `yes` for Leg 2) so the form and contact links work even if `content.json` fails to fetch.
+- **Hardened Sheet Sync:** `Code.gs` validates bus legs against option whitelists (`BUS_LEG_1_3_OPTIONS`, `BUS_LEG_2_OPTIONS`) and sanitizes `comments` via `sanitizeCell(data.comments, 500)`.
+
+## Risks and Mitigations
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Radio pill labels overflow on 320px screens | Med | Use `flex: 1 1 0; min-width: 0; font-size: 0.8125rem; line-height: 1.2;` on `.bus-leg-group .radio-pill-label`. |
+| Hydration overwrites `<svg>` icons inside `#contact-phone-*` / `#contact-email-*` | High | Target inner `<span id="contact-phone-text-1">` for text and `setAttr('contact-phone-1', 'href', ...)` for link URLs. |
+| Existing Google Sheet already has 14-column header row | Med | Document exact Columns L–P header update instructions in `google-apps-script/README.md`. |
+| Formula injection via `comments` textarea | High | Enforce `sanitizeCell(data.comments, 500)` in `Code.gs` and whitelist check on bus leg values. |
+
