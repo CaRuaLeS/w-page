@@ -38,11 +38,42 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
   initCalendar(calendarData);
 
-  initRsvp(content?.rsvp || {});
+  const rsvpConfig = { ...(content?.rsvp || {}) };
+  if (!rsvpConfig.googleAppsScriptUrl) {
+    const envUrl = await loadEnvVar('GOOGLE_APPS_SCRIPT_URL');
+    if (envUrl) {
+      rsvpConfig.googleAppsScriptUrl = envUrl;
+    }
+  }
+  initRsvp(rsvpConfig);
 
   // 1-Tap Copy IBAN Utility
   initCopyIban(content?.gifts);
 });
+
+/**
+ * Reads a key from ./.env when running on a static/local server
+ */
+async function loadEnvVar(key) {
+  try {
+    const res = await fetch('./.env', { cache: 'no-store' });
+    if (!res.ok) return '';
+    const text = await res.text();
+    for (const rawLine of text.split(/\r?\n/)) {
+      const line = rawLine.trim();
+      if (!line || line.startsWith('#')) continue;
+      const eqIdx = line.indexOf('=');
+      if (eqIdx === -1) continue;
+      const k = line.slice(0, eqIdx).trim();
+      if (k === key) {
+        return line.slice(eqIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+      }
+    }
+  } catch {
+    // Ignore when .env is not present
+  }
+  return '';
+}
 
 /**
  * Hydrates DOM elements from content.json

@@ -91,7 +91,7 @@
     "title": "Asistencia",
     "subtitle": "Por favor, confirma tu asistencia rellenando el siguiente formulario.",
     "description": "",
-    "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycby7t_KXVBvtuv-3m72dtDeQXMqqJBTnPjbrxAqYSGmo3RBra8BqyO0C3RzmBlD2jKhE/exec",
+    "googleAppsScriptUrl": "",
     "successHeading": "Gracias!",
     "successMessage": "Su RSVP ha sido registrado con éxito. ¡No podemos esperar para celebrar con usted!",
     "successDeclineMessage": "Gracias por hacernoslo saber. ¡Sentiremos tu falta en nuestro día especial!",
